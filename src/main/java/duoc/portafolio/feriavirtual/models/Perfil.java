@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "PERFILES")
 public class Perfil implements Serializable{
@@ -26,34 +29,4 @@ public class Perfil implements Serializable{
 	
 	@Column(name = "DESCRIPCION")
 	private String descripcion;
-		
-	public Perfil() {
-		super();
-	}
-
-	public Perfil(Integer idPerfil, String tipo, String descripcion) {
-		super();
-		this.idPerfil = idPerfil;
-		this.tipo = tipo;
-		this.descripcion = descripcion;
-	}
-	
-	public Integer getIdPerfil() {
-		return idPerfil;
-	}
-	public void setIdPerfil(Integer idPerfil) {
-		this.idPerfil = idPerfil;
-	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
 }
