@@ -1,6 +1,4 @@
 package duoc.portafolio.feriavirtual.models;
-
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -23,8 +21,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "USUARIOS")
-public class Usuario implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class Usuario{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuarios_sequence")

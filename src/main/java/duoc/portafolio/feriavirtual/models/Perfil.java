@@ -1,7 +1,5 @@
 package duoc.portafolio.feriavirtual.models;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +13,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "PERFILES")
-public class Perfil implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class Perfil {	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "perfiles_sequence")
