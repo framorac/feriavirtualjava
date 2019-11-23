@@ -17,23 +17,23 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "VENTAS")
-public class Venta {
+@Table(name = "HISTORICO_ESTADO_VENTAS")
+public class HistoricoEstadoVenta {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ventas_sequence")
-	@SequenceGenerator(name = "ventas_sequence", sequenceName = "VENTAS_SEQ", allocationSize = 1)
-	@Column(name = "ID_VENTA")
-	private Integer idVenta;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "historico_estado_ventas_sequence")
+	@SequenceGenerator(name = "historico_estado_ventas_sequence", sequenceName = "HISTORICO_ESTADO_VENTAS_SEQ", allocationSize = 1)
+	@Column(name = "ID_TIPOESTADO")
+	private Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_USUARIO", nullable = false)
-	private Usuario usuario;
+	@JoinColumn(name = "ID_ESTADO", nullable = false)
+	private TipoEstado tipo;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_VENTA", nullable = false)
+	private Venta venta;
 	
 	@Column(name = "FECHA")
 	private Date fecha;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_TIPOVENTA", nullable = false)
-	private TipoVenta tipoVenta;
 }
