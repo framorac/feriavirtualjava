@@ -12,6 +12,23 @@
 <nav class="ui teal fixed inverted menu" th:fragment="nav">
   <a class="active item" th:href="@{/home}">Maipo Grande</a>
   <a class="item" th:href="@{/ventas}">Ventas</a>
-</nav>
+  <div class="ui dropdown item">
+      Language <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item">English</a>
+        <a class="item">Russian</a>
+        <a class="item">Spanish</a>
+      </div>
+    </div>
+
+		<div class="right menu">
+			<div class="ui dropdown item">
+				Admin <i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item">Salir <i class="sign out alternate icon"></i></a>
+				</div>
+			</div>
+		</div>
+	</nav>
 </body>
 </html>
