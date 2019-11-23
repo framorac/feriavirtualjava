@@ -4,7 +4,17 @@
 <body>
 <nav th:replace="partials/partials :: nav"></nav>
 <div class="ui main container">
-<h1 class="ui header">Ventas</h1>
+<h1 class="ui header">Listado de Ventas</h1>
+<table id="listadoVentas">
+	<thead>
+		<tr>
+			<th>Columna 1</th>
+			<th>Columna 2</th>
+			<th>Columna 3</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
 </div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
