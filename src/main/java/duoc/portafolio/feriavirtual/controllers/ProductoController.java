@@ -6,7 +6,7 @@ public class ProductoController {
 	
 	@GetMapping("/productos")
 	public String producto() {
-		return "productos/producto";
+		return "productos/productos";
 	}
 	
 	@GetMapping("/productos/agregar")
