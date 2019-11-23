@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/partials :: head"></head>
+<body>
+<nav th:replace="partials/partials :: nav"></nav>
+<div class="ui main container">
+	<form class="ui form">
+		<h4 class="ui dividing header">AGREGAR VENTA</h4>
+		<div class="field">
+		<label>Tipo Venta</label> 
+			<div class="two fields">
+				<div class="field">
+					<select name="tipoVenta">
+						<option>SELECCIONAR</option>
+						<option value="1">LOCAL</option>
+						<option value="2">EXTERNA</option>
+					</select>
+				</div>
+				<div class="field"></div>
+			</div>
+		</div>
+		<div class="field">
+			<label>Fecha</label> 
+			<div class="two fields">
+				<div class="field">
+					<input type="date" name="fecha">
+				</div>
+				<div class="field"></div>
+			</div>
+		</div>
+		<div class="ui blue button" tabindex="0">Agregar Venta</div>
+	</form>
+</div>
+<!-- SCRIPT -->
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+<!-- SCRIPT -->
+</body>
+</html>

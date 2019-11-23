@@ -10,4 +10,9 @@ public class VentaController {
 	public String ventas() {
 		return "ventas/ventas";
 	}
+	
+	@GetMapping("/ventas/agregar")
+	public String agregar() {
+		return "ventas/agregar";
+	}
 }
