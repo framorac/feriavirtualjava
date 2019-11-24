@@ -27,7 +27,7 @@ $(function() {
 	$('.ui.dropdown').dropdown();
 	$('select.dropdown').dropdown();
 	$('#listadoVentas').DataTable({
-		"language" : {
+		language : {
 			"sProcessing" : "Procesando...",
 			"sLengthMenu" : "Mostrar _MENU_ registros",
 			"sZeroRecords" : "No se encontraron resultados",
