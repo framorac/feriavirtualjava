@@ -26,7 +26,7 @@ $(function() {
 
 	$('.ui.dropdown').dropdown();
 	$('select.dropdown').dropdown();
-	$('#listadoVentas').DataTable({
+	$('#listadoVentas,#listadoUsuarios,#listadoProductos').DataTable({
 		language : {
 			"sProcessing" : "Procesando...",
 			"sLengthMenu" : "Mostrar _MENU_ registros",
