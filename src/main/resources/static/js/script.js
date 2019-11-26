@@ -27,6 +27,10 @@ $(function() {
 	$('.ui.dropdown').dropdown();
 	$('select.dropdown').dropdown();
 	$('#listadoVentas,#listadoUsuarios,#listadoProductos').DataTable({
+		buttons: [
+			'pdfHtml5',
+			'excel'
+		],
 		language : {
 			"sProcessing" : "Procesando...",
 			"sLengthMenu" : "Mostrar _MENU_ registros",
