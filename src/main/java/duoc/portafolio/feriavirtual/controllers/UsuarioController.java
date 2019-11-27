@@ -28,7 +28,7 @@ public class UsuarioController {
 			modelo.addAttribute("usuario", usuarioService.get(id));
 		}
 		
-		return "usuarios/usuarios";
+		return "usuarios/agregar";
 	}
 	
 	@PostMapping("/usuarios/crear/{id}")

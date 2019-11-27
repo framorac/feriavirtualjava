@@ -8,12 +8,22 @@
 <table id="listadoVentas" class="ui celled table selectable">
 	<thead>
 		<tr>
-			<th>Columna 1</th>
-			<th>Columna 2</th>
-			<th>Columna 3</th>
+			<th>ID</th>
+			<th>Cliente</th>
+			<th>Fecha Venta</th>
+			<th>Tipo Venta</th>
+			<th>Acciones</th>
 		</tr>
 	</thead>
-	<tbody></tbody>
+	<tbody>
+		<tr th:each="venta : ${listadoVentas}">
+			<td th:text="${venta.idVenta}"></td>
+			<td th:text="${venta.usuario.nombre}"></td>
+			<td th:text="${venta.fecha}"></td>
+			<td th:text="${venta.tipoVenta.tipo}"></td>
+			<td></td>
+		</tr>
+	</tbody>
 </table>
 </div>
 <!-- SCRIPT -->

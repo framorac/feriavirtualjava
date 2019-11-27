@@ -5,6 +5,12 @@
 <nav th:replace="partials/partials :: nav"></nav>
 <div class="ui main container">
 <h1 class="ui header">Listado de Usuarios</h1>
+<hr />
+<a class="ui right labeled icon button" href="/usuarios/crear/null">
+  <i class="user plus icon"></i>
+  Agregar Usuario
+</a>
+<br>
 <table id="listadoUsuarios" class="ui celled table selectable">
 	<thead>
 		<tr>
@@ -15,7 +21,15 @@
 			<th>Acciones</th>
 		</tr>
 	</thead>
-	<tbody></tbody>
+	<tbody>
+		<tr th:each="usuario : ${listadoUsuarios}">
+			<td th:text="${usuario.nombre}"></td>
+			<td th:text="${usuario.apellido}"></td>
+			<td th:text="${usuario.email}"></td>
+			<td th:text="${usuario.perfil.tipo}"></td>
+			<td></td>
+		</tr>
+	</tbody>
 </table>
 </div>
 <!-- SCRIPT -->

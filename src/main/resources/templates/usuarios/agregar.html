@@ -4,27 +4,8 @@
 <body>
 <nav th:replace="partials/partials :: nav"></nav>
 <div class="ui main container">
-<h1 class="ui header">Listado de Productos</h1>
-<table id="listadoProductos" class="ui celled table selectable">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Nombre</th>
-			<th>Descripci&oacute;n</th>
-			<th>Tipo</th>
-			<th>Acciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="producto : ${listadoProductos}">
-			<td th:text="${producto.idProducto}"></td>
-			<td th:text="${producto.nombre}"></td>
-			<td th:text="${producto.descripcion}"></td>
-			<td th:text="${producto.tipoProducto.tipo}"></td>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
+<h1 class="ui header">Agregar Usuarios</h1>
+
 </div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
