@@ -2,43 +2,65 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials :: head"></head>
 <body>
-<nav th:replace="partials/partials :: nav"></nav>
-<div class="ui main container">
-<h1 class="ui header">Listado de Usuarios</h1>
-<hr />
-<a class="ui right labeled icon button" href="/usuarios/crear/null">
-  <i class="user plus icon"></i>
-  Agregar Usuario
-</a>
-<br>
-<table id="listadoUsuarios" class="ui celled table selectable">
-	<thead>
-		<tr>
-			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Email</th>
-			<th>Perf&iacute;l</th>
-			<th>Acciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="usuario : ${listadoUsuarios}">
-			<td th:text="${usuario.nombre}"></td>
-			<td th:text="${usuario.apellido}"></td>
-			<td th:text="${usuario.email}"></td>
-			<td th:text="${usuario.perfil.tipo}"></td>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
-</div>
-<!-- SCRIPT -->
-<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
-<script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>
-<script type="text/javascript" th:src="@{/datatables/datatables.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
-<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
-<script type="text/javascript" th:src="@{/js/script.js}"></script>
-<!-- SCRIPT -->
+	<nav th:replace="partials/partials :: nav"></nav>
+	<div class="ui main container">
+		<div class="column">
+			<a href="/usuarios/crear/0" class="ui labeled icon button"><i
+				class="plus icon"></i> Agregar Usuario</a>
+		</div>
+		<div class="ui divider"></div>
+		<div class="column">
+			<div class="column" th:if="${listadoUsuarios.isEmpty()}">
+				<div class="ui icon message">
+					<i class="frown outline icon"></i>
+					<div class="content">
+						<div class="header">Lo sentimos, a&uacute;n no hay
+							registros...</div>
+					</div>
+				</div>
+			</div>
+			<div class="column" th:if="${!listadoUsuarios.isEmpty()}">
+				<table id="listadoUsuarios" class="ui selectable table">
+					<thead>
+						<tr>
+							<td>#</td>
+							<td>NOMBRE</td>
+							<td>APELLIDO</td>
+							<td>EMAIL</td>
+							<td>USERNAME</td>
+							<td>PERFIL</td>
+							<td>ACCIONES</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="usuario : ${listadoUsuarios}">
+							<td th:text="${usuario.idUsuario}">
+							<td th:text="${usuario.nombre}">
+							<td th:text="${usuario.apellido}">
+							<td th:text="${usuario.email}">
+							<td th:text="${usuario.username}">
+							<td th:text="${usuario.perfil.tipo}">
+							<td><a
+								th:href="@{/usuarios/crear/{id}(id=${usuario.idUsuario})}">
+									<i class="edit icon"></i>
+							</a> <a th:href="@{/usuarios/eliminar/{id}(id=${usuario.idUsuario})}">
+									<i class="trash icon"></i>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- SCRIPT -->
+	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/css/semantic/semantic.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/datatables.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
+	<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+	<!-- SCRIPT -->
 </body>
 </html>

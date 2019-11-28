@@ -23,7 +23,7 @@ public class Usuario{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuarios_sequence")
-	@SequenceGenerator(name = "usuarios_sequence", sequenceName = "USUARIO_SEQ1", allocationSize = 1)
+	@SequenceGenerator(name = "usuarios_sequence", sequenceName = "USUARIOS_SEQ1", allocationSize = 1)
 	@Column(name = "ID_USUARIO")
 	private Integer idUsuario;
 	
