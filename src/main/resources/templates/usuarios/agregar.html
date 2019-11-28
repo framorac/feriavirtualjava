@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/partials :: head"></head>
+<body>
+<nav th:replace="partials/partials :: nav"></nav>
+<div class="ui main container">
+<div class="column">
+			<h2>Nuevo Usuario</h2>
+		</div>
+		<div class="ui divider"></div>
+		<div class="column">
+			<form action="#" class="ui form" th:action="@{/usuarios/guardar}"
+				th:object="${usuario}" method="post">
+				<div class="field">
+					<label>Nombre</label> <input type="text" name="nombre"
+						th:field="*{nombre}" placeholder="Nombre">
+				</div>
+				<div class="field">
+					<label>Apellido</label> <input type="text" name="apellido"
+						th:field="*{apellido}" placeholder="Apellido">
+				</div>
+				<div class="field">
+					<label>Email</label> <input type="email" name="email"
+						th:field="*{email}" placeholder="algo@algo.com">
+				</div>
+				<div class="field">
+					<label>Perf&iacute;l</label> 
+					<select name="perfil" th:field="*{perfil}">
+						<option th:value="''" th:text="--SELECCIONAR--"></option>
+						<option th:each="perfil : ${perfiles}"
+						 th:value="${perfil.idPerfil}" th:text="${#strings.toUpperCase(perfil.tipo)}">
+						</option>
+					</select>
+				</div>
+				<div class="field">
+					<label>Usuario</label> <input type="text" name="username"
+						th:field="*{username}" placeholder="Usuario">
+				</div>
+				<div class="field">
+					<label>Contrase&ntilde;a</label> <input type="password" th:value="*{password}" name="password">
+				</div>
+				<button class="ui button" type="submit">REGISTRAR</button>
+				<input type="hidden" name="idUsuario" th:field="*{idUsuario}">
+			</form>
+		</div>
+
+</div>
+<!-- SCRIPT -->
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>
+<script type="text/javascript" th:src="@{/datatables/datatables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
+<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+<!-- SCRIPT -->
+</body>
+</html>

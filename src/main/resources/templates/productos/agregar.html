@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/partials :: head"></head>
+<body>
+<nav th:replace="partials/partials :: nav"></nav>
+<div class="ui main container">
+<form class="ui form">
+		<h4 class="ui dividing header">AGREGAR PRODUCTO</h4>
+		<div class="two fields">
+		<div class="field">
+		    <label>Nombre Producto</label>
+		    <input type="text" name="nombre" placeholder="Nombre del producto">
+		  </div>
+		  <div class="field">
+		    <label>Descripci&oacute;n</label>
+		    <input type="text" name="descripcion" placeholder="Ingrese descripci&oacute;n">
+		  </div>
+		</div>
+		  <div class="field">
+			<label>Tipo Producto</label> 
+			<div class="two fields">
+				<div class="field">
+					<select name="tipoProducto">
+						<option>SELECCIONAR</option>
+						<option value="1">FRUTAS</option>
+						<option value="2">VERDURAS</option>
+						<option value="2">FRUTOS SECOS</option>
+					</select>
+				</div>
+				<div class="field"></div>
+			</div>
+		</div>
+		<div class="ui blue button">Agregar Producto</div>
+	</form>
+</div>
+<!-- SCRIPT -->
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>
+<script type="text/javascript" th:src="@{/datatables/datatables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
+<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+<!-- SCRIPT -->
+</body>
+</html>

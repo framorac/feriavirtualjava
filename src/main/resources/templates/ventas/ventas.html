@@ -4,11 +4,34 @@
 <body>
 <nav th:replace="partials/partials :: nav"></nav>
 <div class="ui main container">
-<h1 class="ui header">Ventas</h1>
+<h1 class="ui header">Listado de Ventas</h1>
+<table id="listadoVentas" class="ui celled table selectable">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Cliente</th>
+			<th>Fecha Venta</th>
+			<th>Tipo Venta</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="venta : ${listadoVentas}">
+			<td th:text="${venta.idVenta}"></td>
+			<td th:text="${venta.usuario.nombre}"></td>
+			<td th:text="${venta.fecha}"></td>
+			<td th:text="${venta.tipoVenta.tipo}"></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
 </div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>
+<script type="text/javascript" th:src="@{/datatables/datatables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
+<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
 <!-- SCRIPT -->
 </body>

@@ -30,6 +30,7 @@ public class Venta {
 	@JoinColumn(name = "ID_USUARIO", nullable = false)
 	private Usuario usuario;
 	
+	@Column(name = "FECHA")
 	private Date fecha;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

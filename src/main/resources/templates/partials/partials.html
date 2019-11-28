@@ -7,11 +7,41 @@
 	<title>Feria Virtual :: Maipo Grande</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/semantic/semantic.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/datatables/datatables.min.css}">
 </head>
 <body>
 <nav class="ui teal fixed inverted menu" th:fragment="nav">
   <a class="active item" th:href="@{/home}">Maipo Grande</a>
-  <a class="item" th:href="@{/ventas}">Ventas</a>
-</nav>
+  <div class="ui dropdown item">
+     <i class="user icon"></i> Usuarios <i class="dropdown icon"></i>
+     <div class="menu">
+       <a class="item" th:href="@{/usuarios}">Usuarios</a>
+       <a class="item" th:href="@{/usuarios/agregar}">Agregar Usuario</a>
+     </div>
+   </div>
+  <div class="ui dropdown item">
+     <i class="handshake icon"></i> Ventas <i class="dropdown icon"></i>
+     <div class="menu">
+       <a class="item" th:href="@{/ventas}">Ventas</a>
+       <a class="item" th:href="@{/ventas/agregar}">Agregar Venta</a>
+     </div>
+   </div>
+   <div class="ui dropdown item">
+     <i class="shopping basket icon"></i> Productos <i class="dropdown icon"></i>
+     <div class="menu">
+       <a class="item" th:href="@{/productos}">Producto</a>
+       <a class="item" th:href="@{/productos/agregar}">Agregar Producto</a>
+     </div>
+   </div>
+
+		<div class="right menu">
+			<div class="ui dropdown item">
+				Admin <i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item">Salir <i class="sign out alternate icon"></i></a>
+				</div>
+			</div>
+		</div>
+	</nav>
 </body>
 </html>
