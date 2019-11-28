@@ -37,7 +37,7 @@
 						th:field="*{username}" placeholder="Usuario">
 				</div>
 				<div class="field">
-					<label>Contrase&ntilde;a</label> <input type="password" th:field="*{password}" name="password">
+					<label>Contrase&ntilde;a</label> <input type="password" th:value="*{password}" name="password">
 				</div>
 				<button class="ui button" type="submit">REGISTRAR</button>
 				<input type="hidden" name="idUsuario" th:field="*{idUsuario}">

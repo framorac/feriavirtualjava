@@ -31,6 +31,7 @@ $(function() {
 			'pdfHtml5',
 			'excel'
 		],
+		select: {info: false},
 		language : {
 			"sProcessing" : "Procesando...",
 			"sLengthMenu" : "Mostrar _MENU_ registros",
