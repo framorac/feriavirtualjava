@@ -5,8 +5,7 @@
 	<nav th:replace="partials/partials :: nav"></nav>
 	<div class="ui main container">
 		<div class="column">
-			<a href="/usuarios/crear/0" class="ui labeled icon button"><i
-				class="plus icon"></i> Agregar Usuario</a>
+			<a href="/usuarios/crear/0" class="ui labeled icon button"><i class="plus icon"></i> Agregar Usuario</a>
 		</div>
 		<div class="ui divider"></div>
 		<div class="column">
@@ -40,12 +39,10 @@
 							<td th:text="${usuario.email}">
 							<td th:text="${usuario.username}">
 							<td th:text="${usuario.perfil.tipo}">
-							<td><a
-								th:href="@{/usuarios/crear/{id}(id=${usuario.idUsuario})}">
-									<i class="edit icon"></i>
-							</a> <a th:href="@{/usuarios/eliminar/{id}(id=${usuario.idUsuario})}">
-									<i class="trash icon"></i>
-							</a></td>
+							<td>
+								<a th:href="@{/usuarios/crear/{id}(id=${usuario.idUsuario})}"><i class="edit icon"></i>	</a> 
+							    <a th:href="@{/usuarios/eliminar/{id}(id=${usuario.idUsuario})}"><i class="trash icon"></i></a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
