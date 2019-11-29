@@ -43,9 +43,9 @@ public class Oferta {
 	@Column(name = "FECHA_INICIO")
 	private Date fechaInicio;
 	
-	@Column(name="language",columnDefinition="char(1)")
+	@Column(name="ISCERTIFICADO",columnDefinition="char(1)")
 	private String isCertificado;
 	
-	@Column(name="language",columnDefinition="char(1)")
+	@Column(name="ISENVASADO",columnDefinition="char(1)")
 	private String isEnvasado;
 }
