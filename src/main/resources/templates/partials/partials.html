@@ -36,9 +36,9 @@
 
 		<div class="right menu">
 			<div class="ui dropdown item">
-				Admin <i class="dropdown icon"></i>
+				<span th:text="${session.nombre}"></span> <i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item">Salir <i class="sign out alternate icon"></i></a>
+					<a class="item" th:href="@{/salir}">Salir <i class="sign out alternate icon"></i></a>
 				</div>
 			</div>
 		</div>
