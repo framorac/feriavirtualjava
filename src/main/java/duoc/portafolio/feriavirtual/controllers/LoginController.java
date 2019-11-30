@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import duoc.portafolio.feriavirtual.commons.SessionAuxiliar;
 import duoc.portafolio.feriavirtual.models.Usuario;
+import duoc.portafolio.feriavirtual.models._EstructuraMenu;
+import duoc.portafolio.feriavirtual.models._EstructuraMenu.MenuItem;
 import duoc.portafolio.feriavirtual.service.ProductoService;
 import duoc.portafolio.feriavirtual.service.UsuarioService;
 
@@ -51,6 +53,7 @@ public class LoginController {
 			  String nombre = userFind.getNombre();
 			  request.getSession().setAttribute("tipoUsuario", tipoUsuario);
 			  request.getSession().setAttribute("nombre", nombre);
+			  request.getSession().setAttribute("menu", GenerarPerfil(tipoUsuario));
 		  }
 		  return userFind != null ? "/home/home" : "/login/login";
 	}
@@ -68,5 +71,41 @@ public class LoginController {
 	public String salir(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "/login/login";
+	}
+	
+	private List<_EstructuraMenu> GenerarPerfil(String tipoUsuario) {
+		List<_EstructuraMenu> estructuraMenu = new ArrayList<_EstructuraMenu>();
+		// menu comun
+		
+		_EstructuraMenu menuVenta = new _EstructuraMenu("Ventas");
+		menuVenta.getMenus().add(new MenuItem("/ventas", "Ventas"));
+		menuVenta.getMenus().add(new MenuItem("/ventas/agregar", "Agregar Venta"));
+		
+		_EstructuraMenu menuSubasta = new _EstructuraMenu("Subastas");
+		menuSubasta.getMenus().add(new MenuItem("/subastas", "Subastas"));
+		menuSubasta.getMenus().add(new MenuItem("/subastas/agregar", "Agregar Subastas"));
+		
+		_EstructuraMenu menuOferta = new _EstructuraMenu("Ofertas");
+		menuOferta.getMenus().add(new MenuItem("/ofertas", "Ofertas"));
+		menuOferta.getMenus().add(new MenuItem("/ofertas/agregar", "Agregar Ofertas"));
+		
+		switch(tipoUsuario) {
+		case "admin":
+			estructuraMenu.add(menuVenta);
+			estructuraMenu.add(menuSubasta);
+			estructuraMenu.add(menuOferta);
+			break;
+		case "cliente externo":
+			estructuraMenu.add(menuVenta);
+			break;
+		case "transporte":
+			estructuraMenu.add(menuSubasta);
+			break;
+		case "productor":
+			estructuraMenu.add(menuOferta);
+			break;
+		}
+		
+		return  estructuraMenu;
 	}
 }

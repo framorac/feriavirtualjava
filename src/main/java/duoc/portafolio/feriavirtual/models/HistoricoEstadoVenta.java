@@ -23,7 +23,7 @@ public class HistoricoEstadoVenta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "historico_estado_ventas_sequence")
 	@SequenceGenerator(name = "historico_estado_ventas_sequence", sequenceName = "HISTORICO_ESTADO_VENTAS_SEQ", allocationSize = 1)
-	@Column(name = "ID_TIPOESTADO")
+	@Column(name = "ID")
 	private Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -36,4 +36,7 @@ public class HistoricoEstadoVenta {
 	
 	@Column(name = "FECHA")
 	private Date fecha;
+	
+	@Column(name = "ACTIVO")
+	private char activo;
 }
