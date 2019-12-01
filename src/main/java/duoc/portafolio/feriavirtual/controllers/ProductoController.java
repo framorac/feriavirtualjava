@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import duoc.portafolio.feriavirtual.models.Producto;
 import duoc.portafolio.feriavirtual.service.ProductoService;
+import duoc.portafolio.feriavirtual.service.TipoProductoService;
 
 @Controller
 public class ProductoController {
@@ -17,9 +18,13 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoServicio;
 	
+	@Autowired
+	private TipoProductoService tipoProductoService;
+	
 	@RequestMapping("/productos")
 	public String index(Model modelo) {
 		modelo.addAttribute("listadoProductos", productoServicio.getAll());
+		modelo.addAttribute("tipoProductos", tipoProductoService.getAll());
 		
 		return "productos/productos";
 	}
@@ -28,11 +33,13 @@ public class ProductoController {
 	public String editar(@PathVariable("id") Integer id, Model modelo) {
 		if (id != null && id != 0) {
 			modelo.addAttribute("producto", productoServicio.get(id));
+			modelo.addAttribute("tipoProductos", tipoProductoService.getAll());
 		} else {
 			modelo.addAttribute("producto", new Producto());
+			modelo.addAttribute("tipoProductos", tipoProductoService.getAll());
 		}
 		
-		return "usuarios/agregar";
+		return "productos/agregar";
 	}
 	
 	@PostMapping("/productos/guardar")

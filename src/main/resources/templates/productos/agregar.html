@@ -11,11 +11,11 @@
 		<div class="column">
 			<form action="#" class="ui form" th:action="@{/productos/guardar}" th:object="${producto}" method="post">
 				<div class="field">
-					<label>Nombre</label> <input type="text" name="nombre" th:field="*{nombre}" placeholder="Nombre">
+					<label>Nombre</label> <input type="text" name="nombre" th:field="*{nombre}" placeholder="Nombre" required="required">
 				</div>
 				<div class="field">
 					<label>Tipo Producto</label> 
-					<select name="idTipoProducto" th:field="*{tipoProducto}">
+					<select name="idTipoProducto" th:field="*{tipoProducto}" required="required">
 						<option th:value="''" th:text="--SELECCIONAR--"></option>
 						<option th:each="tipoProducto : ${tipoProductos}"
 						 th:value="${tipoProducto.idTipoProducto}" th:text="${#strings.toUpperCase(tipoProducto.tipo)}">
@@ -23,7 +23,7 @@
 					</select>
 				</div>
 				<div class="field">
-					<label>Descripci&oacute;n</label> <textarea type="text" name="descripcion" th:field="*{descripcion}" placeholder="Ingresar una descripci&oacute;n del producto.">
+					<label>Descripci&oacute;n</label> <textarea name="descripcion" th:field="*{descripcion}" placeholder="Ingresar una descripci&oacute;n del producto." required="required"></textarea>
 				</div>
 				<button class="ui button" type="submit">AGREGAR</button>
 			</form>

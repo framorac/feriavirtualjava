@@ -23,7 +23,7 @@
 						<tr>
 							<td>#</td>
 							<td>NOMBRE</td>
-							<td>DESCRIPCI&oacute;N</td>
+							<td>DESCRIPCI&Oacute;N</td>
 							<td>TIPO PRODUCTO</td>
 							<td>ACCIONES</td>
 						</tr>
@@ -33,7 +33,7 @@
 							<td th:text="${producto.idProducto}">
 							<td th:text="${producto.nombre}">
 							<td th:text="${producto.descripcion}">
-							<td th:text="${producto.tipo.nombre}">
+							<td th:text="${producto.tipoProducto.tipo}">
 							<td>
 								<a th:href="@{/productos/crear/{id}(id=${producto.idProducto})}"><i class="edit icon"></i>	</a> 
 							    <a th:href="@{/productos/eliminar/{id}(id=${producto.idProducto})}"><i class="trash icon"></i></a>
