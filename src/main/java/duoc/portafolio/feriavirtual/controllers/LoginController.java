@@ -3,7 +3,6 @@ package duoc.portafolio.feriavirtual.controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import duoc.portafolio.feriavirtual.commons.SessionAuxiliar;
 import duoc.portafolio.feriavirtual.models.Usuario;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu.MenuItem;
-import duoc.portafolio.feriavirtual.service.ProductoService;
 import duoc.portafolio.feriavirtual.service.UsuarioService;
 
 @Controller
