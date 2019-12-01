@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import duoc.portafolio.feriavirtual.models.Producto;
 import duoc.portafolio.feriavirtual.service.ProductoService;
@@ -16,29 +17,33 @@ public class ProductoController {
 	@Autowired
 	private ProductoService productoServicio;
 	
-	@GetMapping("/productos")
-	public String producto(Model modelo) {
+	@RequestMapping("/productos")
+	public String index(Model modelo) {
 		modelo.addAttribute("listadoProductos", productoServicio.getAll());
+		
 		return "productos/productos";
 	}
 	
 	@GetMapping("/productos/crear/{id}")
-	public String crear(@PathVariable("id") Integer id, Model modelo) {
-		if (id != null) {
+	public String editar(@PathVariable("id") Integer id, Model modelo) {
+		if (id != null && id != 0) {
 			modelo.addAttribute("producto", productoServicio.get(id));
+		} else {
+			modelo.addAttribute("producto", new Producto());
 		}
 		
-		return "productos/agregar";
+		return "usuarios/agregar";
 	}
 	
-	@PostMapping("/productos/crear/{id}")
+	@PostMapping("/productos/guardar")
 	public String crear(Producto producto, Model modelo) {
 		productoServicio.save(producto);
 		
 		return "redirect:/productos";
 	}
 	
-	public String borrar(@PathVariable Integer id, Model modelo) {
+	@GetMapping("/productos/eliminar/{id}")
+	public String eliminar(@PathVariable Integer id, Model modelo) {
 		productoServicio.delete(id);
 		
 		return "redirect:/productos";

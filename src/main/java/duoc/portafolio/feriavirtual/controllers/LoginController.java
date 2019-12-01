@@ -88,7 +88,7 @@ public class LoginController {
 		menuOferta.getMenus().add(new MenuItem("/ofertas/agregar", "Agregar Ofertas"));
 		
 		_EstructuraMenu menuProducto = new _EstructuraMenu("Productos");
-		menuProducto.getMenus().add(new MenuItem("/productos", "productos"));
+		menuProducto.getMenus().add(new MenuItem("/productos", "Productos"));
 		menuProducto.getMenus().add(new MenuItem("/productos/agregar", "Agregar Productos"));
 		
 		_EstructuraMenu menuReporte = new _EstructuraMenu("Reportes");
