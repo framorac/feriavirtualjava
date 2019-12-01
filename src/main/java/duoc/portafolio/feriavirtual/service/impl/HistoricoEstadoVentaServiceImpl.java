@@ -6,11 +6,8 @@ import org.springframework.stereotype.Service;
 
 import duoc.portafolio.feriavirtual.commons.GenericServiceImpl;
 import duoc.portafolio.feriavirtual.models.HistoricoEstadoVenta;
-import duoc.portafolio.feriavirtual.models.Venta;
 import duoc.portafolio.feriavirtual.repository.HistoricoEstadoVentaRepository;
-import duoc.portafolio.feriavirtual.repository.VentaRepository;
 import duoc.portafolio.feriavirtual.service.HistoricoEstadoVentaService;
-import duoc.portafolio.feriavirtual.service.VentaService;
 
 @Service
 public class HistoricoEstadoVentaServiceImpl extends GenericServiceImpl<HistoricoEstadoVenta, Integer> implements HistoricoEstadoVentaService{

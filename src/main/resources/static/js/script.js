@@ -5,20 +5,20 @@
 $(function() {
 	console.log('Ready....');
 
-	$('.ui.form').form({
+	$('#login').form({
 		fields : {
 			email : {
-				identifier : 'username',
+				identifier : 'user',
 				rules : [ {
 					type : 'empty',
-					prompt : 'Usuario es obligatorio..'
+					prompt : 'Usuario es obligatorio'
 				} ]
 			},
 			password : {
-				identifier : 'password',
+				identifier : 'pass',
 				rules : [ {
 					type : 'empty',
-					prompt : 'Password obligatoria..'
+					prompt : 'Password obligatoria'
 				} ]
 			}
 		}
