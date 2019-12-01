@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import duoc.portafolio.feriavirtual.models.Venta;
+import duoc.portafolio.feriavirtual.service.ProductoService;
 import duoc.portafolio.feriavirtual.service.TipoVentaService;
 import duoc.portafolio.feriavirtual.service.UsuarioService;
 import duoc.portafolio.feriavirtual.service.VentaService;
@@ -25,6 +26,9 @@ public class VentaController {
 	@Autowired
 	private TipoVentaService tipoVentaService;
 	
+	@Autowired
+	private ProductoService productoService;
+	
 	@RequestMapping("/ventas")
 	public String index(Model modelo) {
 		modelo.addAttribute("listadoVentas", ventaServicio.getAll());
@@ -36,6 +40,7 @@ public class VentaController {
 	public String editar(@PathVariable("id") Integer id, Model modelo) {	
 		modelo.addAttribute("usuarios", usuarioService.getAll());
 		modelo.addAttribute("tipoVentas", tipoVentaService.getAll());
+		modelo.addAttribute("productos", productoService.getAll());
 		
 		if (id != null && id != 0) {
 			modelo.addAttribute("venta", ventaServicio.get(id));

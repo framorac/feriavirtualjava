@@ -28,6 +28,21 @@
 						</option>
 					</select>
 				</div>
+				<div class="equal width fields" th:object="${detalleVenta}">
+					<div class="field">
+				      <label>Producto</label>
+				      <select name="" required="required">
+						<option th:value="''" th:text="--SELECCIONAR--"></option>
+						<option th:each="producto : ${productos}"
+						 th:value="${producto.idProducto}" th:text="${#strings.toUpperCase(producto.nombre)}">
+						</option>
+					</select>
+				    </div>
+				    <div class="field">
+				      <label>Cantidad</label>
+				      <input type="number" name="cantidad" min="1" max="50" required>
+				    </div>
+				</div>
 				<button class="ui button" type="submit">AGREGAR</button>
 			</form>
 		</div>
