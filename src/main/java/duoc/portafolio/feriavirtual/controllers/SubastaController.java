@@ -17,8 +17,14 @@ public class SubastaController {
 	
 	@Autowired
 	private VentaService ventaServicio;
+	
 	@Autowired
 	private HistoricoEstadoVentaService hevServicio;
+	
+	@GetMapping("/subastas")
+	public String index() {
+		return "subastas/subastas";
+	}
 	
 	@GetMapping("/subastas/agregar")
 	public String Agregar(Model modelo) {
