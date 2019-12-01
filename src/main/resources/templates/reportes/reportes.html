@@ -2,8 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials :: head"></head>
 <body>
-<h1>Reporte</h1>
-
+<nav th:replace="partials/partials :: nav"></nav>
+<div class="ui main container">
+	<div class="column">
+		<h1>Reportes</h1>
+		<div class="ui divider"></div>
+	</div>
+	<div class="ui large statistics">
+	  <div class="statistic">
+	    <div class="value">
+	      <img th:src="@{/img/user.jpg}" class="ui circular inline image">
+	      <span th:text="${usuarios}"></span>
+	    </div>
+	    <div class="label">
+	      Usuarios
+	    </div>
+	  </div>
+	  <div class="statistic">
+	    <div class="value">
+	      <i class="dollar sign icon"></i>
+	      <span th:text="${ventas}"></span>
+	    </div>
+	    <div class="label">
+	      Cantidad Ventas
+	    </div>
+	  </div>
+	  <div class="statistic">
+	    <div class="value">
+	      <i class="bullhorn icon"></i>
+	      <span th:text="${subastas}"></span>
+	    </div>
+	    <div class="label">
+	      Cantidad Subastas Activas
+	    </div>
+	  </div>
+	</div>
+</div>
 
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>

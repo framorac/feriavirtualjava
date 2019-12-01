@@ -4,7 +4,33 @@
 <body>
 <nav th:replace="partials/partials :: nav"></nav>
 <div class="ui main container">
-<h1 class="ui header">Home</h1>
+<div class="column">
+		<h1>HOME</h1>
+		<div class="ui divider"></div>
+	</div>
+	<div class="column">
+                <div class="ui fluid ordered steps">
+                    <div class="completed step">
+                        <div class="content">
+                            <div class="title">CLIENTE</div>
+                            <div class="description">El cliente es nuestro fin.</div>
+                        </div>
+                    </div>
+                    <div class="completed step">
+                        <div class="content">
+                            <div class="title">Satisfacci&oacute;n</div>
+                            <div class="description">Nuestro lema.</div>
+                        </div>
+                    </div>
+                    <div class="active step">
+                        <i class="smile outline icon"></i>
+                        <div class="content">
+                            <div class="title">Fidelizaci&oacute;n</div>
+                            <div class="description">Nuestra mejora continua.</div>
+                        </div>
+                    </div>
+				</div>
+	</div>
 </div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
