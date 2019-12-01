@@ -109,8 +109,7 @@ public class LoginController {
 			estructuraMenu.add(menuOferta);
 			estructuraMenu.add(menuProducto);
 		case "consultor":
-			estructuraMenu.add(menuOferta);
-			estructuraMenu.add(menuProducto);
+			estructuraMenu.add(menuReporte);
 			break;
 		}
 		
