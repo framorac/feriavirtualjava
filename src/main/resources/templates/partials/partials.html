@@ -12,33 +12,19 @@
 <body>
 <nav class="ui teal fixed inverted menu" th:fragment="nav">
   <a class="active item" th:href="@{/home}">Maipo Grande</a>
-  <div class="ui dropdown item">
-     <i class="user icon"></i> Usuarios <i class="dropdown icon"></i>
+  <div class="ui dropdown item" th:each="menu : ${session.menu}">
+     <i class="handshake icon"></i><span th:text="${menu.getTitle()}"></span> <i class="dropdown icon"></i>
      <div class="menu">
-       <a class="item" th:href="@{/usuarios}">Usuarios</a>
-       <a class="item" th:href="@{/usuarios/agregar}">Agregar Usuario</a>
+	     <th:block th:each="submenu : ${menu.getMenus()}"]>
+	       	<a class="item" th:href="${submenu.getLink()}" th:text="${submenu.getTexto()}"></a> 
+	      </th:block> 
      </div>
    </div>
-  <div class="ui dropdown item">
-     <i class="handshake icon"></i> Ventas <i class="dropdown icon"></i>
-     <div class="menu">
-       <a class="item" th:href="@{/ventas}">Ventas</a>
-       <a class="item" th:href="@{/ventas/agregar}">Agregar Venta</a>
-     </div>
-   </div>
-   <div class="ui dropdown item">
-     <i class="shopping basket icon"></i> Productos <i class="dropdown icon"></i>
-     <div class="menu">
-       <a class="item" th:href="@{/productos}">Producto</a>
-       <a class="item" th:href="@{/productos/agregar}">Agregar Producto</a>
-     </div>
-   </div>
-
 		<div class="right menu">
 			<div class="ui dropdown item">
-				Admin <i class="dropdown icon"></i>
+				<span th:text="${session.nombre}"></span> <i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item">Salir <i class="sign out alternate icon"></i></a>
+					<a class="item" th:href="@{/salir}">Salir <i class="sign out alternate icon"></i></a>
 				</div>
 			</div>
 		</div>

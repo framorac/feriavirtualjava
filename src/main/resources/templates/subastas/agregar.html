@@ -2,9 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials :: head"></head>
 <body>
-<h1>Agregar Subasta</h1>
+<nav th:replace="partials/partials :: nav"></nav>
+<div class="ui main container">
+<h1 class="ui header">Agregar Subasta</h1>
+<table id="listadoVentas" class="ui celled table selectable">
 
-
+</table>
+</div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>
