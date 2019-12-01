@@ -77,19 +77,19 @@ public class LoginController {
 		
 		_EstructuraMenu menuVenta = new _EstructuraMenu("Ventas");
 		menuVenta.getMenus().add(new MenuItem("/ventas", "Ventas"));
-		menuVenta.getMenus().add(new MenuItem("/ventas/agregar", "Agregar Venta"));
+		menuVenta.getMenus().add(new MenuItem("/ventas/crear/0", "Agregar Venta"));
 		
 		_EstructuraMenu menuSubasta = new _EstructuraMenu("Subastas");
 		menuSubasta.getMenus().add(new MenuItem("/subastas", "Subastas"));
-		menuSubasta.getMenus().add(new MenuItem("/subastas/agregar", "Agregar Subastas"));
+		menuSubasta.getMenus().add(new MenuItem("/subastas/crear/0", "Agregar Subastas"));
 		
 		_EstructuraMenu menuOferta = new _EstructuraMenu("Ofertas");
 		menuOferta.getMenus().add(new MenuItem("/ofertas", "Ofertas"));
-		menuOferta.getMenus().add(new MenuItem("/ofertas/agregar", "Agregar Ofertas"));
+		menuOferta.getMenus().add(new MenuItem("/ofertas/crear/0", "Agregar Ofertas"));
 		
 		_EstructuraMenu menuProducto = new _EstructuraMenu("Productos");
 		menuProducto.getMenus().add(new MenuItem("/productos", "Productos"));
-		menuProducto.getMenus().add(new MenuItem("/productos/agregar", "Agregar Productos"));
+		menuProducto.getMenus().add(new MenuItem("/productos/crear/0", "Agregar Productos"));
 		
 		_EstructuraMenu menuReporte = new _EstructuraMenu("Reportes");
 		menuReporte.getMenus().add(new MenuItem("/reportes", "Reportes"));
