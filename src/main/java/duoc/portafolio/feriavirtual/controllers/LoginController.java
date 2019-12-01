@@ -92,12 +92,15 @@ public class LoginController {
 		menuProducto.getMenus().add(new MenuItem("/productos/agregar", "Agregar Productos"));
 		
 		_EstructuraMenu menuReporte = new _EstructuraMenu("Reportes");
+		menuReporte.getMenus().add(new MenuItem("/reportes", "Reportes"));
 		
 		switch(tipoUsuario) {
 		case "admin":
 			estructuraMenu.add(menuVenta);
 			estructuraMenu.add(menuSubasta);
 			estructuraMenu.add(menuOferta);
+			estructuraMenu.add(menuProducto);
+			estructuraMenu.add(menuReporte);
 			break;
 		case "cliente externo":
 			estructuraMenu.add(menuVenta);
