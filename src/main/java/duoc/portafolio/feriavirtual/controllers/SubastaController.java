@@ -22,8 +22,6 @@ public class SubastaController {
 	
 	@GetMapping("/subastas/agregar")
 	public String Agregar(Model modelo) {
-		
-		  //modelo.addAttribute("listadoVentas", ventaServicio.getAll());
 		  List<Venta> ventas = ventaServicio.getAll();
 		  List<HistoricoEstadoVenta> hevs = hevServicio.getAll(); 
 		
