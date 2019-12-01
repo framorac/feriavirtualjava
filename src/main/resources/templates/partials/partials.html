@@ -13,7 +13,7 @@
 <nav class="ui teal fixed inverted menu" th:fragment="nav">
   <a class="active item" th:href="@{/home}">Maipo Grande</a>
   <div class="ui dropdown item" th:each="menu : ${session.menu}">
-     <i class="handshake icon"></i><span th:text="${menu.getTitle()}"></span> <i class="dropdown icon"></i>
+     <span th:text="${menu.getTitle()}"></span> <i class="dropdown icon"></i>
      <div class="menu">
 	     <th:block th:each="submenu : ${menu.getMenus()}"]>
 	       	<a class="item" th:href="${submenu.getLink()}" th:text="${submenu.getTexto()}"></a> 

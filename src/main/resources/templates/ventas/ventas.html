@@ -2,37 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials :: head"></head>
 <body>
-<nav th:replace="partials/partials :: nav"></nav>
-<div class="ui main container">
-<h1 class="ui header">Listado de Ventas</h1>
-<table id="listadoVentas" class="ui celled table selectable">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Cliente</th>
-			<th>Fecha Venta</th>
-			<th>Tipo Venta</th>
-			<th>Acciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="venta : ${listadoVentas}">
-			<td th:text="${venta.idVenta}"></td>
-			<td th:text="${venta.usuario.nombre}"></td>
-			<td th:text="${venta.fecha}"></td>
-			<td th:text="${venta.tipoVenta.tipo}"></td>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
-</div>
-<!-- SCRIPT -->
-<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
-<script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>
-<script type="text/javascript" th:src="@{/datatables/datatables.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
-<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
-<script type="text/javascript" th:src="@{/js/script.js}"></script>
-<!-- SCRIPT -->
+	<nav th:replace="partials/partials :: nav"></nav>
+	<div class="ui main container">
+		<div class="column">
+			<a href="/ventas/crear/0" class="ui labeled icon button"><i class="plus icon"></i> Agregar Venta</a>
+		</div>
+		<div class="ui divider"></div>
+		<div class="column">
+			<div class="column" th:if="${listadoVentas.isEmpty()}">
+				<div class="ui icon message">
+					<i class="frown outline icon"></i>
+					<div class="content">
+						<div class="header">Lo sentimos, a&uacute;n no hay registros...</div>
+					</div>
+				</div>
+			</div>
+			<div class="column" th:if="${!listadoVentas.isEmpty()}">
+				<table id="listadoVentas" class="ui selectable table">
+					<thead>
+						<tr>
+							<td>#</td>
+							<td>CLIENTE</td>
+							<td>TIPO VENTA</td>
+							<td>FECHA VENTA</td>
+							<td>ACCIONES</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="venta : ${listadoVentas}">
+							<td th:text="${venta.idVenta}">
+							<td th:text="${venta.usuario.nombre}+' '+ ${venta.usuario.apellido}">
+							<td th:text="${venta.tipoVenta.tipo}">
+							<td th:text="${#dates.format(venta.fecha, 'dd-MM-YYYY')}">
+							<td>
+								<a th:href="@{/ventas/crear/{id}(id=${venta.idVenta})}"><i class="edit icon"></i>	</a> 
+							    <a th:href="@{/ventas/eliminar/{id}(id=${venta.idVenta})}"><i class="trash icon"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- SCRIPT -->
+	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/css/semantic/semantic.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/datatables.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
+	<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+	<!-- SCRIPT -->
 </body>
 </html>
