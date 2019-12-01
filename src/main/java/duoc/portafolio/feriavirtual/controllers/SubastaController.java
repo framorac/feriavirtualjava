@@ -30,8 +30,8 @@ public class SubastaController {
 		  //ventas activas 
 		  hevs = hevs.stream().filter(x -> x.getActivo() == '1').collect(Collectors.toList());
 		 
+		  modelo.addAttribute("listaVentasActivas", hevs);
 		 
-		
 		return "/subastas/agregar";
 	}
 
