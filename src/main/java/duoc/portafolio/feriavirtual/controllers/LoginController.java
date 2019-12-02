@@ -82,19 +82,12 @@ public class LoginController {
 		
 		_EstructuraMenu menuSubasta = new _EstructuraMenu("Subastas");
 		menuSubasta.getMenus().add(new MenuItem("/subastas", "Subastas"));
-<<<<<<< src/main/java/duoc/portafolio/feriavirtual/controllers/LoginController.java
 		menuSubasta.getMenus().add(new MenuItem("/subastas/ventas", "Agregar Subastas"));
 		
 		_EstructuraMenu menuOferta = new _EstructuraMenu("Ofertas");
 		menuOferta.getMenus().add(new MenuItem("/ofertas", "Ofertas"));
 		menuOferta.getMenus().add(new MenuItem("/ofertas/ventas", "Agregar Ofertas"));
-=======
 		menuSubasta.getMenus().add(new MenuItem("/subastas/crear/0", "Agregar Subastas"));
-		
-		_EstructuraMenu menuOferta = new _EstructuraMenu("Ofertas");
-		menuOferta.getMenus().add(new MenuItem("/ofertas", "Ofertas"));
-		menuOferta.getMenus().add(new MenuItem("/ofertas/crear/0", "Agregar Ofertas"));
->>>>>>> src/main/java/duoc/portafolio/feriavirtual/controllers/LoginController.java
 		
 		_EstructuraMenu menuProducto = new _EstructuraMenu("Productos");
 		menuProducto.getMenus().add(new MenuItem("/productos", "Productos"));
