@@ -2,9 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials :: head"></head>
 <body>
-<h1>Ofertas</h1>
-
-
+<nav th:replace="partials/partials :: nav"></nav>
+<div class="ui main container">
+<div class="column">
+			<h2>Mis Ofertas</h2>
+		</div>
+		<div class="ui divider"></div>
+		<div class="column">
+				<table id="listaMisOfertas" class="ui selectable table">
+					<thead>
+						<tr>
+							<td>#</td>
+							<td>VENTA</td>
+							<td>FECHA</td>
+							<td>CERTIFICADO</td>
+							<td>ENVASADO</td>
+							<td>TOTAL</td>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="miOferta : ${misOfertas}">
+							<tr>
+								<td th:text="${miOferta.oferta.idOferta}"></td>
+								<td th:text="${miOferta.oferta.venta.idVenta}"></td>
+								<td th:text="${miOferta.oferta.fechaInicio}"></td>
+								<td th:text="${miOferta.isCertificado}"></td>
+								<td th:text="${miOferta.isEnvasado}"></td>
+								<td th:text="${miOferta.total}"></td>
+							</tr>
+						</th:block>
+					</tbody>
+				</table>
+		</div>
+</div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>

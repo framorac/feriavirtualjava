@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import duoc.portafolio.feriavirtual.models.Venta;
 import duoc.portafolio.feriavirtual.service.ProductoService;
@@ -20,6 +19,10 @@ public class VentaController {
 	@Autowired
 	private VentaService ventaServicio;
 	
+<<<<<<< src/main/java/duoc/portafolio/feriavirtual/controllers/VentaController.java
+	@GetMapping("/ventas")
+	public String ventas(Model modelo) {
+=======
 	@Autowired
 	private UsuarioService usuarioService;
 	
@@ -31,35 +34,37 @@ public class VentaController {
 	
 	@RequestMapping("/ventas")
 	public String index(Model modelo) {
+>>>>>>> src/main/java/duoc/portafolio/feriavirtual/controllers/VentaController.java
 		modelo.addAttribute("listadoVentas", ventaServicio.getAll());
-		
 		return "ventas/ventas";
 	}
 	
 	@GetMapping("/ventas/crear/{id}")
+<<<<<<< src/main/java/duoc/portafolio/feriavirtual/controllers/VentaController.java
+	public String crear(@PathVariable("id") Integer id, Model modelo) {
+		if (id != null) {
+=======
 	public String editar(@PathVariable("id") Integer id, Model modelo) {	
 		modelo.addAttribute("usuarios", usuarioService.getAll());
 		modelo.addAttribute("tipoVentas", tipoVentaService.getAll());
 		modelo.addAttribute("productos", productoService.getAll());
 		
 		if (id != null && id != 0) {
+>>>>>>> src/main/java/duoc/portafolio/feriavirtual/controllers/VentaController.java
 			modelo.addAttribute("venta", ventaServicio.get(id));
-		} else {
-			modelo.addAttribute("venta", new Venta());
 		}
 		
 		return "ventas/agregar";
 	}
 	
-	@PostMapping("/ventas/guardar")
+	@PostMapping("/ventas/crear/{id}")
 	public String crear(Venta venta, Model modelo) {
 		ventaServicio.save(venta);
 		
 		return "redirect:/ventas";
 	}
 	
-	@GetMapping("/ventas/eliminar/{id}")
-	public String eliminar(@PathVariable Integer id, Model modelo) {
+	public String borrar(@PathVariable Integer id, Model modelo) {
 		ventaServicio.delete(id);
 		
 		return "redirect:/ventas";

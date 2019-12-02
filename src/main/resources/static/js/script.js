@@ -26,7 +26,7 @@ $(function() {
 
 	$('.ui.dropdown').dropdown();
 	$('select.dropdown').dropdown();
-	$('#listadoVentas,#listadoUsuarios,#listadoProductos').DataTable({
+	$('#listadoVentas,#listadoUsuarios,#listadoProductos, #listadoVentasActivas, #listaMisSubastas, #listaMisOfertas').DataTable({
 		buttons: [
 			'pdfHtml5',
 			'excel'

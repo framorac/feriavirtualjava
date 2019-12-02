@@ -2,16 +2,73 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials :: head"></head>
 <body>
-<h1>Agregar ofertas</h1>
-
-
-<!-- SCRIPT -->
-<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
-<script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>
-<script type="text/javascript" th:src="@{/datatables/datatables.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
-<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
-<script type="text/javascript" th:src="@{/js/script.js}"></script>
-<!-- SCRIPT -->
+	<nav th:replace="partials/partials :: nav"></nav>
+	<div class="ui main container">
+		<div class="column">
+			<h2>Agregar Oferta</h2>
+			<p>Lista de ventas disponibles para ofertar</p>
+		</div>
+		<div class="ui divider"></div>
+		<div class="column" th:if="${!ventasDetalladas.isEmpty()}">
+			<table id="listadoVentasActivas" class="ui selectable table">
+				<thead>
+					<tr>
+						<td>#</td>
+						<td>FECHA</td>
+						<td>CLIENTE</td>
+						<td>TIPO</td>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="ventaActiva : ${ventasDetalladas}">
+						<tr>
+							<td th:text="${ventaActiva.venta.getIdVenta()}"></td>
+							<td th:text="${ventaActiva.venta.usuario.nombre}+' '+${ventaActiva.venta.usuario.apellido}"></td>
+							<td th:text="${ventaActiva.venta.fecha}"></td>
+							<td th:text="${ventaActiva.venta.tipoVenta.tipo}"></td>
+						</tr>
+						<tr>
+							<td colspan="4"><strong>Detalles</strong></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<table border="1" width="100%">
+									<thead>
+										<tr>
+											<td>PRODUCTO</td>
+											<td>CANTIDAD</td>
+										</tr>
+									</thead>
+									<tbody>
+										<th:block th:each="detalles: ${ventaActiva.detalleVenta}">
+											<tr>
+												<td th:text="${detalles.producto.nombre}"></td>
+												<td th:text="${detalles.cantidad}"></td>
+											</tr>
+										</th:block>
+										<tr>
+											<td colspan="2">
+												<a th:href="@{/ofertas/formularioAgregar/}+''+${ventaActiva.venta.getIdVenta()}"><i class="edit icon"></i></a> Ofertar
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						</th:block>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- SCRIPT -->
+	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/css/semantic/semantic.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/datatables.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
+	<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+	<!-- SCRIPT -->
 </body>
 </html>

@@ -22,7 +22,7 @@ public class DetalleVenta {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detalle_venta_sequence")
 	@SequenceGenerator(name = "detalle_venta_sequence", sequenceName = "DETALLE_VENTA_SEQ", allocationSize = 1)
 	@Column(name = "ID")
-	private Integer idDetalleVenta;
+	private Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_PRODUCTO", nullable = false)

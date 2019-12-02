@@ -4,10 +4,39 @@
 <body>
 <nav th:replace="partials/partials :: nav"></nav>
 <div class="ui main container">
-<h1 class="ui header">Agregar Subasta</h1>
-<table id="listadoVentas" class="ui celled table selectable">
-
-</table>
+<div class="column">
+			<h2>Agregar Subasta</h2>
+			<p>Lista de ventas disponibles para subastar</p>
+		</div>
+		<div class="ui divider"></div>
+		<div class="column" th:if="${!listaVentasActivas.isEmpty()}">
+				<table id="listadoVentasActivas" class="ui selectable table">
+					<thead>
+						<tr>
+							<td>#</td>
+							<td>CLIENTE</td>
+							<td>FECHA</td>
+							<td>CANTIDAD</td>
+							<td>VENTA SUBASTADA</td>
+							<td>ACCIONES</td>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="ventaActiva : ${listaVentasActivas}">
+							<tr th:style="'background-color:'+${ventaActiva.color}">
+								<td th:text="${ventaActiva.venta.getIdVenta()}"></td>
+								<td th:text="${ventaActiva.venta.usuario.nombre}+' '+${ventaActiva.venta.usuario.apellido}"></td>
+								<td th:text="${ventaActiva.venta.getFecha()}"></td>
+								<td th:text="${ventaActiva.cantidad}"></td>
+								<td th:text="${ventaActiva.ventaSubastada}"></td>
+								<td>
+									<a th:href="@{/subastas/formularioAgregar/}+''+${ventaActiva.idOferta}+'/'+${ventaActiva.cantidad}"><i class="edit icon"></i></a> Subastar
+								</td>
+							</tr>
+						</th:block>
+					</tbody>
+				</table>
+		</div>
 </div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>

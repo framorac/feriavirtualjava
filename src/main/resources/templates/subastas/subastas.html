@@ -2,9 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials :: head"></head>
 <body>
-<h1>Subastas</h1>
-
-
+<nav th:replace="partials/partials :: nav"></nav>
+<div class="ui main container">
+<div class="column">
+			<h2>Mis Subastas</h2>
+		</div>
+		<div class="ui divider"></div>
+		<div class="column">
+				<table id="listaMisSubastas" class="ui selectable table">
+					<thead>
+						<tr>
+							<td>#</td>
+							<td>Oferta</td>
+							<td>FECHA</td>
+							<td>CERTIFICADO</td>
+							<td>REFRIGERADO</td>
+							<td>CAPACIDAD</td>
+							<td>TRANSPORTE</td>
+							<td>PRECIO</td>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="miSubasta : ${misSubastas}">
+							<tr>
+								<td th:text="${miSubasta.idSubasta}"></td>
+								<td th:text="${miSubasta.oferta.idOferta}"></td>
+								<td th:text="${miSubasta.fechaInicio}"></td>
+								<td th:text="${miSubasta.isCertificado}"></td>
+								<td th:text="${miSubasta.isRefrigerado}"></td>
+								<td th:text="${miSubasta.capacidadCarga}"></td>
+								<td th:text="${miSubasta.tipoTransporte.nombre}"></td>
+								<td th:text="${miSubasta.precio}"></td>
+							</tr>
+						</th:block>
+					</tbody>
+				</table>
+		</div>
+</div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>

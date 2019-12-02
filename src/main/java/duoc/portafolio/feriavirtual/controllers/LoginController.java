@@ -52,6 +52,7 @@ public class LoginController {
 			  request.getSession().setAttribute("tipoUsuario", tipoUsuario);
 			  request.getSession().setAttribute("nombre", nombre);
 			  request.getSession().setAttribute("menu", GenerarPerfil(tipoUsuario));
+			  request.getSession().setAttribute("usuario", userFind);
 		  }
 		  return userFind != null ? "/home/home" : "/login/login";
 	}
@@ -81,11 +82,19 @@ public class LoginController {
 		
 		_EstructuraMenu menuSubasta = new _EstructuraMenu("Subastas");
 		menuSubasta.getMenus().add(new MenuItem("/subastas", "Subastas"));
+<<<<<<< src/main/java/duoc/portafolio/feriavirtual/controllers/LoginController.java
+		menuSubasta.getMenus().add(new MenuItem("/subastas/ventas", "Agregar Subastas"));
+		
+		_EstructuraMenu menuOferta = new _EstructuraMenu("Ofertas");
+		menuOferta.getMenus().add(new MenuItem("/ofertas", "Ofertas"));
+		menuOferta.getMenus().add(new MenuItem("/ofertas/ventas", "Agregar Ofertas"));
+=======
 		menuSubasta.getMenus().add(new MenuItem("/subastas/crear/0", "Agregar Subastas"));
 		
 		_EstructuraMenu menuOferta = new _EstructuraMenu("Ofertas");
 		menuOferta.getMenus().add(new MenuItem("/ofertas", "Ofertas"));
 		menuOferta.getMenus().add(new MenuItem("/ofertas/crear/0", "Agregar Ofertas"));
+>>>>>>> src/main/java/duoc/portafolio/feriavirtual/controllers/LoginController.java
 		
 		_EstructuraMenu menuProducto = new _EstructuraMenu("Productos");
 		menuProducto.getMenus().add(new MenuItem("/productos", "Productos"));
@@ -111,6 +120,7 @@ public class LoginController {
 		case "productor":
 			estructuraMenu.add(menuOferta);
 			estructuraMenu.add(menuProducto);
+			break;
 		case "consultor":
 			estructuraMenu.add(menuReporte);
 			break;
