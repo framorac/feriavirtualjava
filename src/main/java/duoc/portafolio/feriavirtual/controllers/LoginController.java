@@ -52,6 +52,7 @@ public class LoginController {
 			  request.getSession().setAttribute("tipoUsuario", tipoUsuario);
 			  request.getSession().setAttribute("nombre", nombre);
 			  request.getSession().setAttribute("menu", GenerarPerfil(tipoUsuario));
+			  request.getSession().setAttribute("usuario", userFind);
 		  }
 		  return userFind != null ? "/home/home" : "/login/login";
 	}
@@ -77,19 +78,19 @@ public class LoginController {
 		
 		_EstructuraMenu menuVenta = new _EstructuraMenu("Ventas");
 		menuVenta.getMenus().add(new MenuItem("/ventas", "Ventas"));
-		menuVenta.getMenus().add(new MenuItem("/ventas/agregar", "Agregar Venta"));
+		menuVenta.getMenus().add(new MenuItem("/ventas/crear/0", "Agregar Venta"));
 		
 		_EstructuraMenu menuSubasta = new _EstructuraMenu("Subastas");
 		menuSubasta.getMenus().add(new MenuItem("/subastas", "Subastas"));
-		menuSubasta.getMenus().add(new MenuItem("/subastas/agregar", "Agregar Subastas"));
+		menuSubasta.getMenus().add(new MenuItem("/subastas/ventas", "Agregar Subastas"));
 		
 		_EstructuraMenu menuOferta = new _EstructuraMenu("Ofertas");
 		menuOferta.getMenus().add(new MenuItem("/ofertas", "Ofertas"));
-		menuOferta.getMenus().add(new MenuItem("/ofertas/agregar", "Agregar Ofertas"));
+		menuOferta.getMenus().add(new MenuItem("/ofertas/ventas", "Agregar Ofertas"));
 		
 		_EstructuraMenu menuProducto = new _EstructuraMenu("Productos");
 		menuProducto.getMenus().add(new MenuItem("/productos", "Productos"));
-		menuProducto.getMenus().add(new MenuItem("/productos/agregar", "Agregar Productos"));
+		menuProducto.getMenus().add(new MenuItem("/productos/crear/0", "Agregar Productos"));
 		
 		_EstructuraMenu menuReporte = new _EstructuraMenu("Reportes");
 		menuReporte.getMenus().add(new MenuItem("/reportes", "Reportes"));
@@ -111,6 +112,7 @@ public class LoginController {
 		case "productor":
 			estructuraMenu.add(menuOferta);
 			estructuraMenu.add(menuProducto);
+			break;
 		case "consultor":
 			estructuraMenu.add(menuReporte);
 			break;

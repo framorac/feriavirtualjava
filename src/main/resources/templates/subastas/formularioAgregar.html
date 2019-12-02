@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/partials :: head"></head>
+<body>
+<nav th:replace="partials/partials :: nav"></nav>
+<div class="ui main container">
+<div class="column">
+			<h2>Ingreso de Subasta</h2>
+		</div>
+		<div class="ui divider"></div>
+		<div class="column">
+			<form class="ui form" th:action="@{/subastas/ingresar}" th:object="${subasta}" method="post">
+				<input type="hidden" name="usuario" th:value="${session.usuario}"  th:field="*{usuario}">
+				<input type="hidden" name="oferta" th:value="${oferta}" th:field="*{oferta}" >
+			<table>
+				<tr>
+					<td>
+						<div class="field">
+							<label>ID Oferta</label>
+							<input type="text" readonly th:value="${idOferta}">
+						</div>
+					</td>
+					<td>
+						<div class="field">
+							<label>ID Usuario</label>
+							<input type="text" readonly th:value="${session.usuario.getIdUsuario()}">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label>¿Está certificado?</label>
+							<input type="radio" th:field="*{isCertificado}" name="isCertificado" value="1"> Sí
+							<input type="radio" th:field="*{isCertificado}" name="isCertificado" value="0" checked="checked"> No		
+						</div>
+					</td>
+					<td>
+						<div class="field">
+							<label>¿Está refrigerado?</label>
+							<input type="radio" th:field="*{isRefrigerado}" name="isRefrigerado" value="1"> Sí
+							<input type="radio" th:field="*{isRefrigerado}" name="isRefrigerado" value="0" checked="checked"> No	
+						</div>
+					</td>
+					<td>
+						<div class="field">
+							<label>Capacidad Carga (Cantidad mínima <th:block th:text="${cantidadMinima}"></th:block>)</label>
+							<input type="number" th:field="*{capacidadCarga}" name="capacidadCarga" required="required" th:min="${cantidadMinima}">	
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label>Tipo Transporte</label> 
+							<select name="idTipoTransporte" th:field="*{tipoTransporte}" required="required">
+								<option th:value="''" th:text="--SELECCIONAR--"></option>
+								<option th:each="tipoTransporte : ${tipoTransportes}"
+								 th:value="${tipoTransporte.idTipoTransporte}" th:text="${#strings.toUpperCase(tipoTransporte.nombre)}+' '+${#strings.toUpperCase(tipoTransporte.descripcion)}">
+								</option>
+							</select>
+						</div>
+					</td>
+					<td>
+						<label>Precio</label>
+						<input type="number" name="precio" th:field="*{precio}" required="required" min="100000"> 
+					</td>
+				</tr>
+			</table>
+				<button class="ui button" type="submit">AGREGAR</button>
+			</form>
+		</div>
+
+		
+</div>
+<!-- SCRIPT -->
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/css/semantic/semantic.min.js}"></script>
+<script type="text/javascript" th:src="@{/datatables/datatables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
+<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+<!-- SCRIPT -->
+</body>
+</html>
