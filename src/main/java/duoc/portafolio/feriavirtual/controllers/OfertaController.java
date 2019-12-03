@@ -17,11 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import duoc.portafolio.feriavirtual.models.*;
-import duoc.portafolio.feriavirtual.service.DetalleOfertaService;
 import duoc.portafolio.feriavirtual.service.DetalleVentaService;
 import duoc.portafolio.feriavirtual.service.HistoricoEstadoVentaService;
 import duoc.portafolio.feriavirtual.service.OfertaService;
-import duoc.portafolio.feriavirtual.service.SubastaService;
 import duoc.portafolio.feriavirtual.service.VentaService;
 
 @Controller
@@ -153,5 +151,4 @@ public class OfertaController {
 		
 		return "/subastas/subastas";
 	}
-
 }
