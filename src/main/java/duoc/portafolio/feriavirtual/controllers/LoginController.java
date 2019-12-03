@@ -88,7 +88,7 @@ public class LoginController {
 		menuOferta.getMenus().add(new MenuItem("/ofertas", "Ofertas"));
 		menuOferta.getMenus().add(new MenuItem("/ofertas/ventas", "Agregar Ofertas"));
 		menuSubasta.getMenus().add(new MenuItem("/subastas/crear/0", "Agregar Subastas"));
-		
+				
 		_EstructuraMenu menuProducto = new _EstructuraMenu("Productos");
 		menuProducto.getMenus().add(new MenuItem("/productos", "Productos"));
 		menuProducto.getMenus().add(new MenuItem("/productos/crear/0", "Agregar Productos"));
