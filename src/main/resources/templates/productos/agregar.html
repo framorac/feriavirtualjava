@@ -24,6 +24,7 @@
 				</div>
 				<div class="field">
 					<label>Descripci&oacute;n</label> <textarea name="descripcion" th:field="*{descripcion}" placeholder="Ingresar una descripci&oacute;n del producto." required="required"></textarea>
+					<input type="hidden" th:field="*{idProducto}" name="id">
 				</div>
 				<button class="ui button" type="submit">AGREGAR</button>
 			</form>
