@@ -9,11 +9,20 @@
 		<div class="ui divider"></div>
 	</div>
 	<div class="ui grid">
-	  <div class="eight wide column" id="grafico1" style="height: 250px;"></div>
-	  <div class="eight wide column" id="grafico2" style="height: 250px;"></div>
+	  <div class="eight wide column">
+	  	<h4 class="ui center aligned header">Reporte 1</h4>
+	  	<div id="grafico1" style="height: 250px;"></div>
+	  </div>
+	  <div class="eight wide column">
+	  	<h4 class="ui center aligned header">Reporte Totales Generales</h4>
+	  	<div id="grafico2" style="height: 250px;"></div>
+	  </div>
 	</div>
 	<div class="ui grid">
-	  <div class="eight wide column" id="grafico3" style="height: 250px;"></div>
+	  <div class="eight wide column">
+	  	<h4 class="ui center aligned header">Reporte 3</h4>
+	  	<div id="grafico3" style="height: 250px;"></div>
+	  </div>
 	  <div class="eight wide column" id="grafico2" style="height: 250px;"></div>
 	</div>
 </div>
@@ -28,7 +37,8 @@
 <script type="text/javascript" th:src="@{/js/morris.js}"></script>
 <!-- SCRIPT -->
 
-<script type="text/javascript">
+<script th:inline="javascript">
+/*<![CDATA[*/
 new Morris.Line({
 	  // ID of the element in which to draw the chart.
 	  element: 'grafico1',
@@ -53,9 +63,10 @@ new Morris.Line({
 Morris.Donut({
 	  element: 'grafico2',
 	  data: [
-	    {label: "Download Sales", value: 12},
-	    {label: "In-Store Sales", value: 30},
-	    {label: "Mail-Order Sales", value: 20}
+	    {label: "Usuarios", value: [[${usuarios}]]},
+	    {label: "Ventas", value: [[${ventas}]]},
+	    {label: "Subastas", value: [[${subastas}]]},
+	    {label: "Productos", value: [[${productos}]]}
 	  ]
 	});
 
@@ -74,6 +85,7 @@ Morris.Bar({
 	  ykeys: ['a', 'b'],
 	  labels: ['Series A', 'Series B']
 	});
+/*]]>*/
 </script>
 </body>
 </html>
