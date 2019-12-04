@@ -24,7 +24,7 @@ public class ReporteController {
 	
 	@Autowired
 	private ProductoRepository productoRepository;
-	
+		
 	@RequestMapping("/reportes")
 	public String index(Model modelo) {
 		modelo.addAttribute("usuarios", usuarioRepository.count());
