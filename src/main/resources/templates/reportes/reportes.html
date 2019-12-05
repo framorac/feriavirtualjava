@@ -9,12 +9,26 @@
 		<div class="ui divider"></div>
 	</div>
 	<div class="ui grid">
-		<div class="eight wide column">
-	  	<h4 class="ui center aligned header">Reporte Totales Generales</h4>
+	  <div class="four wide column">
+	  	<h4 class="ui center aligned header">Reporte Totales Usuarios</h4>
 	  	<div id="grafico2" style="height: 250px;"></div>
 	  </div>
-	  <div class="eight wide column">
-	  	<h4 class="ui center aligned header">Ventas x A&ntilde;o</h4>
+	  <div class="four wide column">
+	  	<h4 class="ui center aligned header">Reporte Totales Ventas</h4>
+	  	<div id="grafico3" style="height: 250px;"></div>
+	  </div>
+	  <div class="four wide column">
+	  	<h4 class="ui center aligned header">Reporte Totales Subastas</h4>
+	  	<div id="grafico4" style="height: 250px;"></div>
+	  </div>
+	  <div class="four wide column">
+	  	<h4 class="ui center aligned header">Reporte Totales Ofertas</h4>
+	  	<div id="grafico5" style="height: 250px;"></div>
+	  </div>
+	</div>
+	<div class="ui grid">
+	  <div class="sixteen wide column">
+	  	<h4 class="ui center aligned header">Ventas Por A&ntilde;o</h4>
 	  	<div id="grafico1" style="height: 250px;"></div>
 	  </div>
 	</div>
@@ -56,12 +70,41 @@ new Morris.Line({
 Morris.Donut({
 	  element: 'grafico2',
 	  data: [
-	    {label: "Usuarios", value: [[${usuarios}]]},
-	    {label: "Ventas", value: [[${ventas}]]},
-	    {label: "Subastas", value: [[${subastas}]]},
-	    {label: "Productos", value: [[${productos}]]},
+	    {label: "Usuarios", value: [[${usuarios}]]}
+	  ],
+	  colors: [
+		    '#99FF99',
+		  ],
+	});
+
+Morris.Donut({
+	  element: 'grafico3',
+	  data: [
+	    {label: "Ventas", value: [[${ventas}]]}
+	  ],
+	  colors: [
+		    '#99FFFF'
+		  ],
+	});
+
+Morris.Donut({
+	  element: 'grafico4',
+	  data: [
+	    {label: "Subastas", value: [[${subastas}]]}
+	  ],
+	  colors: [
+		    '#990000'
+		  ],
+	});
+	
+Morris.Donut({
+	  element: 'grafico5',
+	  data: [
 	    {label: "Ofertas", value: [[${ofertas}]]}
-	  ]
+	  ],
+	  colors: [
+		    '#000099'
+		  ],
 	});
 /*]]>*/
 </script>

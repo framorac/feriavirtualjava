@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.net.http.HttpRequest;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import duoc.portafolio.feriavirtual.service.OfertaService;
 import duoc.portafolio.feriavirtual.service.SubastaService;
 import duoc.portafolio.feriavirtual.service.TipoTransporteService;
 import duoc.portafolio.feriavirtual.service.VentaService;
-import oracle.sql.DATE;
 import duoc.portafolio.feriavirtual.models.*;
 
 @Controller
