@@ -5,11 +5,11 @@
 	<nav th:replace="partials/partials :: nav"></nav>
 	<div class="ui main container">
 		<div class="column">
-			<a href="/ventas/crear/0" class="ui labeled icon button"><i class="plus icon"></i> Agregar Venta</a>
+			<a href="/ventas/detallar" class="ui labeled icon button"><i class="plus icon"></i> Agregar Venta</a>
 		</div>
 		<div class="ui divider"></div>
 		<div class="column">
-			<div class="column" th:if="${listadoVentas.isEmpty()}">
+			<div class="column" th:if="${ventasConEstado.isEmpty()}">
 				<div class="ui icon message">
 					<i class="frown outline icon"></i>
 					<div class="content">
@@ -17,7 +17,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="column" th:if="${!listadoVentas.isEmpty()}">
+			<div class="column" th:if="${!ventasConEstado.isEmpty()}">
 				<table id="listadoVentas" class="ui selectable table">
 					<thead>
 						<tr>
@@ -25,18 +25,22 @@
 							<td>CLIENTE</td>
 							<td>TIPO VENTA</td>
 							<td>FECHA VENTA</td>
-							<td>ACCIONES</td>
+							<td>ESTADO</td>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="venta : ${listadoVentas}">
-							<td th:text="${venta.idVenta}">
-							<td th:text="${venta.usuario.nombre}+' '+ ${venta.usuario.apellido}">
-							<td th:text="${venta.tipoVenta.tipo}">
-							<td th:text="${#dates.format(venta.fecha, 'dd-MM-YYYY')}">
-							<td>
-								<a th:href="@{/ventas/crear/{id}(id=${venta.idVenta})}"><i class="edit icon"></i>	</a> 
-							    <a th:href="@{/ventas/eliminar/{id}(id=${venta.idVenta})}"><i class="trash icon"></i></a>
+						<tr th:each="venta : ${ventasConEstado}">
+							<td th:text="${venta.venta.idVenta}"></td>
+							<td th:text="${venta.venta.usuario.nombre}+' '+ ${venta.venta.usuario.apellido}"></td>
+							<td th:text="${venta.venta.tipoVenta.tipo}"></td>
+							<td th:text="${#dates.format(venta.venta.fecha, 'dd-MM-YYYY')}"></td>
+							<td th:if="${venta.isRecepcionado}">
+								<form action="/ventas/finalizar" method="post">
+									<input type="hidden" th:value="${venta.venta.idVenta}" name="idVenta" id="idVenta">
+									<button title="Presione para finalizar la venta" class="ui button" type="submit" th:text="${venta.estado}"></button>
+								</form>
+							</td>
+							<td th:unless="${venta.isRecepcionado}" th:text="${venta.estado}">
 							</td>
 						</tr>
 					</tbody>

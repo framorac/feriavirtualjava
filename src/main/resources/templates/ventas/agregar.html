@@ -9,42 +9,29 @@
 		</div>
 		<div class="ui divider"></div>
 		<div class="column">
-			<form action="#" class="ui form" th:action="@{/ventas/guardar}" th:object="${venta}" method="post">
-				<div class="field">
-					<label>Cliente</label> 
-					<select name="usuario" th:field="*{usuario}" required="required">
-						<option th:value="''" th:text="--SELECCIONAR--"></option>
-						<option th:each="usuario : ${usuarios}"
-						 th:value="${usuario.idUsuario}" th:text="${#strings.toUpperCase(usuario.nombre)}">
-						</option>
-					</select>
-				</div>
-				<div class="field">
-					<label>Tipo Venta</label> 
-					<select name="tipoVenta" th:field="*{tipoVenta}" required="required">
-						<option th:value="''" th:text="--SELECCIONAR--"></option>
-						<option th:each="tipoVenta : ${tipoVentas}"
-						 th:value="${tipoVenta.idTipoVenta}" th:text="${#strings.toUpperCase(tipoVenta.tipo)}">
-						</option>
-					</select>
-				</div>
-				<!-- <div class="equal width fields" th:object="${detalleVenta}">
-					<div class="field">
-				      <label>Producto</label>
-				      <select name="" required="required">
-						<option th:value="''" th:text="--SELECCIONAR--"></option>
-						<option th:each="producto : ${productos}"
-						 th:value="${producto.idProducto}" th:text="${#strings.toUpperCase(producto.nombre)}">
-						</option>
-					</select>
-				    </div>
-				    <div class="field">
-				      <label>Cantidad</label>
-				      <input type="number" name="cantidad" min="1" max="50" required>
-				    </div>
-				</div> -->
-				<input type="hidden" th:field="*{idVenta}" name="id">
-				<button class="ui button" type="submit">AGREGAR</button>
+		<button id="agregarProducto" class="ui button">Agregar Producto</button>
+			<form class="ui form" th:action="@{/ventas/ingresar}" th:object="${detalles}" method="post">
+				<table class="ui selectable table" id="tablaProductos" index="1">
+				<th:block th:each="detalle, stat : *{detalleVenta}">
+					<tr class="detalle" th:detalle="${stat.index}" style="display: none">
+						<td>
+						<label>Ingrese Producto</label> 
+							<select th:field="*{detalleVenta[__${stat.index}__].producto}">
+								<option th:value="''" th:text="--SELECCIONAR--"></option>
+								<option th:each="producto : ${productos}"
+								  th:value="${producto.idProducto}" th:text="${#strings.toUpperCase(producto.nombre)}">
+								</option>
+							</select>
+						</td>
+						<td>
+						<label>Cantidad (kg)</label>
+						<input type="number" th:field="*{detalleVenta[__${stat.index}__].cantidad}" min="10" required="required">
+						</td>
+					</tr>
+				</th:block>
+				</table>
+				
+				<button class="ui button" type="submit">Ingresar Solicitud</button>
 			</form>
 		</div>
 

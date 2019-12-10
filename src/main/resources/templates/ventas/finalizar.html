@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/partials :: head"></head>
+<body>
+	<nav th:replace="partials/partials :: nav"></nav>
+	<div class="ui main container">
+		<div class="column" th:if="${msgFinalizar}">
+			<p th:text="${msgFinalizar}"></p>
+		</div>
+		<div class="column" th:unless="${msgFinalizar}">
+			<h3>Información de la solicitud</h3>
+			<table class="ui selectable table">
+				<thead>
+					<tr>
+						<td>#</td>
+						<td>FECHA</td>
+						<td>TIPO VENTA</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${venta.idVenta}"></td>
+						<td th:text="${venta.fecha}"></td>
+						<td th:text="${venta.tipoVenta.tipo}"></td>
+					<tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="column">
+			<h3>Detalles de la solicitud</h3>
+			<table class="ui selectable table">
+				<thead>
+					<tr>
+						<td>PRODUCTO</td>
+						<td>TIPO PRODUCTO</td>
+						<td>CANTIDAD (kg)</td>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="detalle : ${detallesVenta}">
+						<tr>
+							<td th:text="${detalle.producto.nombre}"></td>
+							<td th:text="${detalle.producto.tipoProducto.tipo}"></td>
+							<td th:text="${detalle.cantidad}"></td>
+						<tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div>
+		<div class="column">
+			<h3>Oferta Ganadora</h3>
+			<table class="ui selectable table">
+				<thead>
+					<tr>
+						<td>#</td>
+						<td>PRODUCTOR</td>
+						<td>FECHA</td>
+						<td>CERTIFICADO</td>
+						<td>ENVASADO</td>
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+							<td th:text="${ofertaGanadora.idOferta}"></td>
+							<td th:text="${ofertaGanadora.usuario.nombre}+' '+${ofertaGanadora.usuario.apellido}"></td>
+							<td th:text="${ofertaGanadora.fechaInicio}"></td>
+							<td th:text="${ofertaGanadora.isCertificado}"></td>
+							<td th:text="${ofertaGanadora.isEnvasado}"></td>
+						<tr>
+				</tbody>
+			</table>
+			<h3>Detalles de la Oferta Ganadora</h3>
+			<table class="ui selectable table">
+				<thead>
+					<tr>
+						<td>PRODUCTO</td>
+						<td>CANTIDAD (kg)</td>
+						<td>PRECIO (x kg)</td>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="detalle : ${detallesOferta}">
+						<tr>
+							<td th:text="${detalle.producto.nombre}"></td>
+							<td th:text="${detalle.cantidad}"></td>
+							<td th:text="${detalle.precio}"></td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div>
+		<div class="column">
+			<h3>Detalles de la Subasta</h3>
+			<table class="ui selectable table">
+				<thead>
+					<tr>
+						<td>#</td>
+						<td>TRANSPORTISTA</td>
+						<td>FECHA</td>
+						<td>CERTIFICADO</td>
+						<td>REFRIGERADO</td>
+						<td>CAPACIDAD</td>
+						<td>TRANSPORTE</td>
+						<td>PRECIO</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${subasta.idSubasta}"></td>
+						<td th:text="${subasta.usuario.nombre}+' '+${subasta.usuario.apellido}"></td>
+						<td th:text="${subasta.fechaInicio}"></td>
+						<td th:text="${subasta.isCertificado}"></td>
+						<td th:text="${subasta.isRefrigerado}"></td>
+						<td th:text="${subasta.capacidadCarga}"></td>
+						<td th:text="${subasta.tipoTransporte.nombre}"></td>
+						<td th:text="${subasta.precio}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="column">
+			<table class="ui selectable table">
+				<tr>
+					<td>
+						<form action="/ventas/cerrar" method="post">
+							<label>¿Está de acuerdo con la compra?</label>
+							<input type="hidden" value="1" name="aceptado">
+							<button class="ui button" type="submit">ACEPTO</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+			<form action="/ventas/cerrar" method="post">
+							<label>No estoy conforme con la compra</label>
+							<br>
+							<input type="hidden" value="0" name="aceptado">
+								<textarea rows="10" cols="50" name="mensaje">
+								</textarea>
+								<br>
+							<button class="ui button" type="submit">NO CONFORME</button>
+						</form>
+		</div>
+	</div>
+	<!-- SCRIPT -->
+	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/css/semantic/semantic.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/datatables/datatables.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
+	<script type="text/javascript" th:src="@{/js/fonts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+	<!-- SCRIPT -->
+</body>
+</html>

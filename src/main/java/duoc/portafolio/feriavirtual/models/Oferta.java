@@ -48,4 +48,7 @@ public class Oferta {
 	
 	@Column(name="ISENVASADO",columnDefinition="char(1)")
 	private String isEnvasado;
+	
+	@Column(name="ISGANADOR",columnDefinition="char(1)")
+	private String isGanador;
 }

@@ -26,7 +26,7 @@ $(function() {
 
 	$('.ui.dropdown').dropdown();
 	$('select.dropdown').dropdown();
-	$('#listadoVentas,#listadoUsuarios,#listadoProductos, #listadoVentasActivas, #listaMisSubastas, #listaMisOfertas').DataTable({
+	$('#listadoVentas,#listadoUsuarios,#listadoProductos, #listadoVentasActivas, #listaMisSubastas, #listaMisOfertas, #detalleDelaOferta').DataTable({
 		buttons: [
 			'pdfHtml5',
 			'excel'
@@ -60,5 +60,22 @@ $(function() {
 				"colvis" : "Visibilidad"
 			}
 		}
+	});
+	
+	
+	// esto para que funcione al agregar mas prodcutos para la venta de forma dinámica
+	$('.detalle[detalle=0]').css('display', 'block');
+	setTimeout(function(){
+		// la wuea no se asigna altiro qp la mierad de backend no carga el contenido antes 
+		$('.detalle[detalle=0] select').attr("required", "required");
+		$('.detalle[detalle=0] input').attr("required", "required");
+	}, 1000);
+	
+	$('#agregarProducto').click(function(){
+		var i = parseInt($('#tablaProductos').attr("index"))+1;
+		$('.detalle[detalle='+i+']').css('display', 'block');
+		$('.detalle[detalle='+i+'] select').attr("required", "required");
+		$('.detalle[detalle='+i+'] input').attr("required", "required");
+		$('#tablaProductos').attr("index", i);
 	});
 });

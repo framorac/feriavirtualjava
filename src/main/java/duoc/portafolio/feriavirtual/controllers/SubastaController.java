@@ -82,7 +82,7 @@ public class SubastaController {
 		subasta.setUsuario((Usuario)session.getAttribute("usuario"));
 		subasta.setOferta((Oferta)session.getAttribute("oferta"));
 		subastaService.save(subasta);
-		return "/subastas/subastas";
+		return "redirect:/subastas";
 	}
 	
 	@GetMapping("/subastas/ventas")
