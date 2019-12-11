@@ -95,4 +95,8 @@ $(function() {
 	  .modal('show')
 	;
 	
+	var valores = $('#valoresGrafico').text();
+	console.log(valores);
+	
+	
 });

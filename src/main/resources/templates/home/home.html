@@ -31,6 +31,37 @@
                     </div>
 				</div>
 	</div>
+	<br>
+	<div class="column">
+		<h3>Información del contrato</h3>
+		<table class="ui selectable table">
+			<thead>
+				<tr>
+					<td>ID del contrato</td>
+					<td>Nombre y Apellido</td>
+					<td>Tipo Cuenta</td>
+					<td>Fecha Inicio</td>
+					<td>Fecha Término</td>
+					<td>Email</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${session.contrato.idContrato}"></td>
+					<td th:text="${session.contrato.usuario.nombre}+' '+${session.usuario.apellido}"></td>
+					<td th:text="${session.contrato.usuario.perfil.tipo}"></td>
+					<td th:text="${session.contrato.fechaInicio}"></td>
+					<td th:text="${session.contrato.fechaTermino}"></td>
+					<td th:text="${session.contrato.usuario.email}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- <div th:if="${valores!= null && !valores.isEmpty()}" class="column" id="grafico">
+		<th:block th:each="valor: ${valores}">
+			<span id="valoresGrafico" style="display: none" th:text="${valor.valores}"></span>
+		</th:block>
+	</div> -->
 </div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
@@ -39,6 +70,10 @@
 <script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
 <script type="text/javascript" th:src="@{/js/fonts.js}"></script>
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 <!-- SCRIPT -->
 </body>
 </html>

@@ -18,11 +18,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import duoc.portafolio.feriavirtual.commons.SessionAuxiliar;
 import duoc.portafolio.feriavirtual.models.Contrato;
+import duoc.portafolio.feriavirtual.models.DetalleOferta;
+import duoc.portafolio.feriavirtual.models.Oferta;
 import duoc.portafolio.feriavirtual.models.Usuario;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu.MenuItem;
 import duoc.portafolio.feriavirtual.service.ContratoService;
+import duoc.portafolio.feriavirtual.service.DetalleOfertaService;
+import duoc.portafolio.feriavirtual.service.OfertaService;
 import duoc.portafolio.feriavirtual.service.UsuarioService;
+import oracle.net.aso.x;
 
 @Controller
 public class LoginController {
@@ -32,6 +37,10 @@ public class LoginController {
 	private UsuarioService usuarioServicio;
 	@Autowired
 	private ContratoService contratoServicio;
+	@Autowired
+	private OfertaService ofertaServicio;
+	@Autowired
+	private DetalleOfertaService detalleOfertaServicio;
 	
 	
 	@PostMapping("/login")
@@ -66,6 +75,8 @@ public class LoginController {
 				  request.getSession().setAttribute("nombre", nombre);
 				  request.getSession().setAttribute("menu", GenerarPerfil(tipoUsuario));
 				  request.getSession().setAttribute("usuario", userFind);
+				  request.getSession().setAttribute("contrato", contratos.get(0));
+				  modelo.addAttribute("valores", AgregarGrafico(idUsuario));
 			  }
 			  else {
 				  String msg = "Contrato inválido o no vigente";
@@ -143,5 +154,28 @@ public class LoginController {
 		}
 		
 		return  estructuraMenu;
+	}
+	
+	private Object AgregarGrafico(int idUsuario) {
+		List<Oferta> ofertas = ofertaServicio.getAll().stream().filter(x -> x.getUsuario().getIdUsuario() == idUsuario).collect(Collectors.toList());
+		List<DetalleOferta> detallesOferta = detalleOfertaServicio.getAll().stream().collect(Collectors.toList());
+		class Objeto{
+			int[] valores = new int[2];
+			public Objeto(int[] valores) {
+				super();
+				this.valores = valores;
+			}
+		}
+		List<Objeto> objetos = new ArrayList<Objeto>();
+		for(Oferta oferta : ofertas) {
+			List<DetalleOferta> detAux = detallesOferta.stream().filter(x -> x.getOferta().getIdOferta() == oferta.getIdOferta()).collect(Collectors.toList());
+			int total = 0;
+			for(DetalleOferta d : detAux) {
+				total += d.getCantidad();
+			}
+			int[] n = new int[] {oferta.getIdOferta(), total};
+			objetos.add(new Objeto(n));
+		}
+		return objetos;
 	}
 }
