@@ -30,15 +30,15 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label>¿Está certificado?</label>
-							<input type="radio" th:field="*{isCertificado}" name="isCertificado" value="1"> Sí
+							<label>Â¿Est&aacute;? certificado?</label>
+							<input type="radio" th:field="*{isCertificado}" name="isCertificado" value="1"> S&iacute;
 							<input type="radio" th:field="*{isCertificado}" name="isCertificado" value="0" required="required" checked="checked"> No		
 						</div>
 					</td>
 					<td>
 						<div class="field">
-							<label>¿Está refrigerado?</label>
-							<input type="radio" th:field="*{isRefrigerado}" name="isRefrigerado" value="1"> Sí
+							<label>Â¿Est&aacute;? refrigerado?</label>
+							<input type="radio" th:field="*{isRefrigerado}" name="isRefrigerado" value="1"> S&iacute;
 							<input type="radio" th:field="*{isRefrigerado}" name="isRefrigerado" value="0" required="required" checked="checked"> No	
 						</div>
 					</td>
@@ -57,7 +57,7 @@
 					</td>
 					<td>
 						<div class="field">
-							<label>Capacidad Carga: mínima <th:block th:text="${cantidadMinima}"></th:block> (kg)</label>
+							<label>Capacidad Carga: m&iacute;nima <th:block th:text="${cantidadMinima}"></th:block> (kg)</label>
 							<input type="number" th:field="*{capacidadCarga}" name="capacidadCarga" required="required" th:min="${cantidadMinima}">	
 						</div>
 					</td>
