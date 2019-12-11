@@ -6,7 +6,7 @@
 	<div class="ui main container">
 		<div class="column">
 			<h2>Agregar Oferta</h2>
-			<p>Lista de ventas disponibles para ofertar</p>
+			<p>Lista de ofertas disponibles para ofertar</p>
 		</div>
 		<div class="ui divider"></div>
 		<div class="column" th:if="${!ventasDetalladas.isEmpty()}">
@@ -32,7 +32,7 @@
 						</tr>
 						<tr>
 							<td colspan="4">
-								<table border="1">
+								<table class="ui selectable table inverted teal">
 									<thead>
 										<tr>
 											<td>PRODUCTO</td>
@@ -48,7 +48,7 @@
 										</th:block>
 										<tr>
 											<td colspan="2">
-												<a th:href="@{/ofertas/formularioAgregar/}+''+${ventaActiva.venta.getIdVenta()}"><i class="edit icon"></i></a> Ofertar
+												<a th:href="@{/ofertas/formularioAgregar/}+''+${ventaActiva.venta.getIdVenta()}" class="ui icon button"><i class="trophy icon"></i> Ofertar</a>
 											</td>
 										</tr>
 									</tbody>
