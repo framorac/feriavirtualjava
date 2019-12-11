@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import duoc.portafolio.feriavirtual.commons.SessionAuxiliar;
 import duoc.portafolio.feriavirtual.models.Contrato;
 import duoc.portafolio.feriavirtual.models.DetalleOferta;
+import duoc.portafolio.feriavirtual.models.DetalleVenta;
 import duoc.portafolio.feriavirtual.models.Oferta;
 import duoc.portafolio.feriavirtual.models.Usuario;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu.MenuItem;
 import duoc.portafolio.feriavirtual.service.ContratoService;
 import duoc.portafolio.feriavirtual.service.DetalleOfertaService;
+import duoc.portafolio.feriavirtual.service.DetalleVentaService;
 import duoc.portafolio.feriavirtual.service.OfertaService;
 import duoc.portafolio.feriavirtual.service.UsuarioService;
 import oracle.net.aso.x;
@@ -41,7 +43,8 @@ public class LoginController {
 	private OfertaService ofertaServicio;
 	@Autowired
 	private DetalleOfertaService detalleOfertaServicio;
-	
+	@Autowired
+	private DetalleVentaService detalleVentaServicio;
 	
 	@PostMapping("/login")
 	public String login(@RequestParam("user") String user, @RequestParam("pass") String pass, HttpServletRequest request, Model modelo) {
@@ -76,7 +79,8 @@ public class LoginController {
 				  request.getSession().setAttribute("menu", GenerarPerfil(tipoUsuario));
 				  request.getSession().setAttribute("usuario", userFind);
 				  request.getSession().setAttribute("contrato", contratos.get(0));
-				  modelo.addAttribute("valores", AgregarGrafico(idUsuario));
+				  request.getSession().setAttribute("valores", AgregarGrafico(idUsuario));
+				  request.getSession().setAttribute("valores2", AgregarGrafico2());
 			  }
 			  else {
 				  String msg = "Contrato inválido o no vigente";
@@ -160,7 +164,7 @@ public class LoginController {
 		List<Oferta> ofertas = ofertaServicio.getAll().stream().filter(x -> x.getUsuario().getIdUsuario() == idUsuario).collect(Collectors.toList());
 		List<DetalleOferta> detallesOferta = detalleOfertaServicio.getAll().stream().collect(Collectors.toList());
 		class Objeto{
-			int[] valores = new int[2];
+			public int[] valores = new int[2];
 			public Objeto(int[] valores) {
 				super();
 				this.valores = valores;
@@ -176,6 +180,40 @@ public class LoginController {
 			int[] n = new int[] {oferta.getIdOferta(), total};
 			objetos.add(new Objeto(n));
 		}
+		return objetos;
+	}
+	
+	private Object AgregarGrafico2() {
+		List<DetalleVenta> detalles = detalleVentaServicio.getAll();
+		List<DetalleVenta> detallesFrutas = detalles.stream().filter(x -> x.getProducto().getTipoProducto().getTipo().equals("Frutas")).collect(Collectors.toList());
+		List<DetalleVenta> detallesVerduras = detalles.stream().filter(x -> x.getProducto().getTipoProducto().getTipo().equals("Verduras")).collect(Collectors.toList());
+		List<DetalleVenta> detallesSecos = detalles.stream().filter(x -> x.getProducto().getTipoProducto().getTipo().equals("Frutos secos")).collect(Collectors.toList());
+		class Objeto{
+			public int valor;
+			public String producto;
+			public Objeto(int valor, String producto) {
+				super();
+				this.valor = valor;
+				this.producto = producto;
+			}
+		}
+		List<Objeto> objetos = new ArrayList<Objeto>();
+		int totalFrutas = 0;
+		int totalVerduras = 0;
+		int totalSecos = 0;
+		for(DetalleVenta d : detallesFrutas) {
+			totalFrutas += d.getCantidad();
+		}
+		for(DetalleVenta d : detallesVerduras) {
+			totalVerduras += d.getCantidad();
+		}
+		for(DetalleVenta d : detallesSecos) {
+			totalSecos += d.getCantidad();
+		}
+		objetos.add(new Objeto(totalFrutas, "Frutas"));
+		objetos.add(new Objeto(totalVerduras, "Verduras"));
+		objetos.add(new Objeto(totalSecos, "Frutos secos"));
+		
 		return objetos;
 	}
 }

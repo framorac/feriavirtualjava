@@ -99,7 +99,7 @@ $(function() {
 	});
 	
 	var d = $('.main').height();
-	$('.main').append('<div class="footer" style="position: absolute; text-align:center; width: 80%; left: 10%">©Copyright 2019 Maipo Grande <br> <span>PORTAFOLIO TÍTULO - INGENIERÍA INFORMÁTICA</span><br><span>Gustavo Aguilar - Mayra Budini - Francisco Mora</span></div>')
+	$('.main').append('<div class="footer" style="text-align:center;">©Copyright 2019 Maipo Grande <br> <span>PORTAFOLIO TÍTULO - INGENIERÍA INFORMÁTICA</span><br><span>Gustavo Aguilar - Mayra Budini - Francisco Mora</span></div>')
 	var h = $(window).height();
 	var diff = d > h ? d + 10 : h + 10;
 	$('.footer').css("top", diff);
@@ -108,8 +108,106 @@ $(function() {
 	  .modal('show')
 	;
 	
-	var valores = $('#valoresGrafico').text();
-	console.log(valores);
+	var x = [];
+	var y = [];
+	$('.valoresGrafico').each(function(){
+		var valores = $(this).text();
+		x.push(parseInt(valores.split("-")[0]));
+		y.push(parseInt(valores.split("-")[1]));		
+	});
+	console.log(x);
+	console.log(y);
 	
+	Highcharts.chart('grafico', {
+	    chart: {
+	        type: 'line'
+	    },
+	    title: {
+	        text: 'Cantidad de Productos x Oferta'
+	    },
+	    subtitle: {
+	        text: 'MAIPO GRANDE'
+	    },
+	    xAxis: {
+	        categories: x
+	    },
+	    yAxis: {
+	        title: {
+	            text: "Cantidad Productos"
+	        }
+	    },
+	    plotOptions: {
+	        line: {
+	            dataLabels: {
+	                enabled: true
+	            },
+	            enableMouseTracking: false
+	        }
+	    },
+	    series: [{
+	        name: 'Ofertas',
+	        data: y
+	    }],
+	    credits:{
+	    	text: "Maipo Grande"
+	    }
+	});
+	
+	var k = [];
+	var l = [];
+	$('.valoresGrafico2').each(function(){
+		console.log($(this));
+		var valores = $(this).text();
+		k.push(parseInt(valores.split("-")[0]));
+		l.push(valores.split("-")[1]);		
+	});
+	console.log(k);
+	console.log(l);
+	
+	// Build the chart
+	Highcharts.chart('grafico2', {
+	    chart: {
+	        plotBackgroundColor: null,
+	        plotBorderWidth: null,
+	        plotShadow: false,
+	        type: 'pie'
+	    },
+	    title: {
+	        text: 'Distribución de productos pedidos'
+	    },
+	    tooltip: {
+	        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	    },
+	    plotOptions: {
+	        pie: {
+	            allowPointSelect: true,
+	            cursor: 'pointer',
+	            dataLabels: {
+	                enabled: false
+	            },
+	            showInLegend: true
+	        }
+	    },
+	    series: [{
+	        name: 'Productos',
+	        colorByPoint: true,
+	        data: [{
+	            name: l[0],
+	            y: k[0],
+	            sliced: true,
+	            selected: true
+	        }, {
+	            name: l[1],
+	            y: k[1]
+	        },
+	        {
+	            name: l[2],
+	            y: k[2]
+	        }]
+	    }],
+	    credits:{
+	    	text: "Maipo Grande"
+	    }
+	});
 	
 });

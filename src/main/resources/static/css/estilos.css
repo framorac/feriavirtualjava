@@ -13,3 +13,11 @@
  .modalEstilos p{
  	font-size: 24px;
  }
+ 
+ .ui.teal.fixed.inverted.menu, .ui.teal.button{
+ 	background-color: rgb(214,61,92);
+ }
+
+ .ui.teal.header{
+ 	color:rgb(214,61,92)!important;
+ }
