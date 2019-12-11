@@ -67,6 +67,11 @@
 			<span class="valoresGrafico2" style="display: none" th:text="${valor.valor+'-'+valor.producto}"></span>
 		</th:block>
 	</div>
+	<div style="margin-bottom: 20px;" th:if="${session.valores3!= null && !session.valores3.isEmpty()}" class="column" id="grafico3">
+		<th:block th:each="valor: ${session.valores3}">
+			<span class="valoresGrafico3" style="display: none" th:text="${valor.id}+'-'+${valor.capacidad}+'-'+${valor.precio}"></span>
+		</th:block>
+	</div>
 </div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>

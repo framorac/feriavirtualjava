@@ -21,6 +21,7 @@ import duoc.portafolio.feriavirtual.models.Contrato;
 import duoc.portafolio.feriavirtual.models.DetalleOferta;
 import duoc.portafolio.feriavirtual.models.DetalleVenta;
 import duoc.portafolio.feriavirtual.models.Oferta;
+import duoc.portafolio.feriavirtual.models.Subasta;
 import duoc.portafolio.feriavirtual.models.Usuario;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu.MenuItem;
@@ -28,6 +29,7 @@ import duoc.portafolio.feriavirtual.service.ContratoService;
 import duoc.portafolio.feriavirtual.service.DetalleOfertaService;
 import duoc.portafolio.feriavirtual.service.DetalleVentaService;
 import duoc.portafolio.feriavirtual.service.OfertaService;
+import duoc.portafolio.feriavirtual.service.SubastaService;
 import duoc.portafolio.feriavirtual.service.UsuarioService;
 import oracle.net.aso.x;
 
@@ -45,6 +47,9 @@ public class LoginController {
 	private DetalleOfertaService detalleOfertaServicio;
 	@Autowired
 	private DetalleVentaService detalleVentaServicio;
+	@Autowired
+	private SubastaService subastaService;
+	
 	
 	@PostMapping("/login")
 	public String login(@RequestParam("user") String user, @RequestParam("pass") String pass, HttpServletRequest request, Model modelo) {
@@ -81,6 +86,8 @@ public class LoginController {
 				  request.getSession().setAttribute("contrato", contratos.get(0));
 				  request.getSession().setAttribute("valores", AgregarGrafico(idUsuario));
 				  request.getSession().setAttribute("valores2", AgregarGrafico2());
+				  request.getSession().setAttribute("valores3", AgregarGrafico3(idUsuario));
+				  
 			  }
 			  else {
 				  String msg = "Contrato inválido o no vigente";
@@ -214,6 +221,28 @@ public class LoginController {
 		objetos.add(new Objeto(totalVerduras, "Verduras"));
 		objetos.add(new Objeto(totalSecos, "Frutos secos"));
 		
+		return objetos;
+	}
+	
+	private Object AgregarGrafico3(int idUsuario) {
+		List<Subasta> subastas = subastaService.getAll().parallelStream().filter(x -> x.getUsuario().getIdUsuario() == idUsuario).collect(Collectors.toList());
+		class Objeto{
+			public int id;
+			public int capacidad;
+			public int precio;
+			public Objeto(int id, int capacidad, int precio) {
+				super();
+				this.id = id;
+				this.capacidad = capacidad;
+				this.precio = precio;
+			}
+		}
+		List<Objeto> objetos = new ArrayList<Objeto>();
+		if(subastas != null && subastas.size() > 0 ) {
+			for(Subasta subasta : subastas) {
+				objetos.add(new Objeto(subasta.getIdSubasta(), subasta.getCapacidadCarga(), subasta.getPrecio()));
+			}
+		}
 		return objetos;
 	}
 }
