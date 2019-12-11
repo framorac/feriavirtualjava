@@ -28,8 +28,10 @@
 								<td th:text="${miSubasta.idSubasta}"></td>
 								<td th:text="${miSubasta.oferta.idOferta}"></td>
 								<td th:text="${miSubasta.fechaInicio}"></td>
-								<td th:text="${miSubasta.isCertificado}"></td>
-								<td th:text="${miSubasta.isRefrigerado}"></td>
+								<td th:if="${miSubasta.isCertificado == '1'}">S&iacute;</td>
+								<td th:if="${miSubasta.isCertificado == '0'}">No</td>
+								<td th:if="${miSubasta.isRefrigerado == '1'}">S&iacute;</td>
+								<td th:if="${miSubasta.isRefrigerado == '0'}">No</td>
 								<td th:text="${miSubasta.capacidadCarga}"></td>
 								<td th:text="${miSubasta.tipoTransporte.nombre}"></td>
 								<td th:text="${miSubasta.precio}"></td>
