@@ -78,4 +78,21 @@ $(function() {
 		$('.detalle[detalle='+i+'] input').attr("required", "required");
 		$('#tablaProductos').attr("index", i);
 	});
+	
+	
+	$('#tablaOfertar input').each(function(){
+		var value = parseInt($(this).attr("min"));
+		$(this).attr("min", value);
+	});
+	
+	var d = $('.main').height();
+	$('.main').append('<div class="footer" style="position: absolute; text-align:center; width: 80%; left: 10%">©Copyright 2019 Maipo Grande <br> <span>PORTAFOLIO TÍTULO - INGENIERÍA INFORMÁTICA</span><br><span>Gustavo Aguilar - Mayra Budini - Francisco Mora</span></div>')
+	var h = $(window).height();
+	var diff = d > h ? d + 10 : h + 10;
+	$('.footer').css("top", diff);
+	
+	$('.ui.basic.modal')
+	  .modal('show')
+	;
+	
 });

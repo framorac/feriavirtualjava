@@ -173,6 +173,7 @@ public class OfertaController {
 		nuevaOferta.setUsuario(usuario);
 		Venta venta = (Venta)session.getAttribute("ventaSeleccionada");
 		nuevaOferta.setVenta(venta);
+		nuevaOferta.setIsGanador("0");
 		Oferta ofertaGrabado = ofertaService.save(nuevaOferta);
 		List<DetalleOferta> detalles = ed.getDetalles();
 		for(DetalleOferta dOferta : detalles) {

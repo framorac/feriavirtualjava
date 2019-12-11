@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,7 +107,7 @@ public class VentaController {
 			String estado = "NONE";
 			if(hev.size() > 0) {
 				estado = hev.get(0).getTipo().getTipo();
-				boolean isRecepcionado = estado.equals("recepcionado") ? true: false;
+				boolean isRecepcionado = estado.equals("en camino") ? true: false;
 				Objeto nuevoObjeto = new Objeto(estado, v, isRecepcionado);
 				ventasConEstado.add(nuevoObjeto);
 			}	
@@ -121,6 +122,13 @@ public class VentaController {
 		}
 		else {
 			modelo.addAttribute("ventaExpandida", null);
+		}
+		
+		// obtenemos el model que proviene de cerrar
+		String mensaje = (String)session.getAttribute("mensaje");
+		if(mensaje != null && !mensaje.isEmpty()) {
+			modelo.addAttribute("mensaje", mensaje);
+			session.removeAttribute("mensaje");
 		}
 		
 		return "ventas/ventas";
@@ -199,4 +207,31 @@ public class VentaController {
 		
 		return "/ventas/finalizar";
 	}
+	
+	@PostMapping("/ventas/cerrar")
+	public String Cerrar(@RequestParam("idVenta") int idVenta, @RequestParam("aceptado") int aceptado,  Model modelo, HttpServletRequest request, HttpSession session) {
+		String mensaje = "";
+		HistoricoEstadoVenta newHistoricoVenta = new HistoricoEstadoVenta();
+		Venta v = ventaServicio.get(idVenta);
+		newHistoricoVenta.setVenta(v);
+		newHistoricoVenta.setActivo('1');
+		newHistoricoVenta.setFecha(Date.valueOf(LocalDate.now()));
+		TipoEstado te = new TipoEstado();
+		if(aceptado == 1) {
+			te = tipoEstadoService.getAll().stream().filter(x -> x.getTipo().equals("recepcionado")).collect(Collectors.toList()).get(0);
+			mensaje = "Muchas gracias por su preferencia, el administrador se contactará con usted para proceder con el pago";
+		}
+		else {
+			te = tipoEstadoService.getAll().stream().filter(x -> x.getTipo().equals("cancelada")).collect(Collectors.toList()).get(0);
+			mensaje= "Lamentamos el inconveniente, el admnistrador se contactará con usted para proceder con la devolución de los productos";
+		}
+		newHistoricoVenta.setTipo(te);
+		hevService.save(newHistoricoVenta);
+		HistoricoEstadoVenta before = hevService.getAll().stream().filter(x -> x.getVenta().getIdVenta() == idVenta && x.getActivo() == '1').collect(Collectors.toList()).get(0);
+		before.setActivo('0');
+		hevService.save(before);
+		request.getSession().setAttribute("mensaje", mensaje);
+		return "redirect:/ventas";
+	}
+	
 }

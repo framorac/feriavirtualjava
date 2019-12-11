@@ -37,7 +37,7 @@
 							<td th:if="${venta.isRecepcionado}">
 								<form action="/ventas/finalizar" method="post">
 									<input type="hidden" th:value="${venta.venta.idVenta}" name="idVenta" id="idVenta">
-									<button title="Presione para finalizar la venta" class="ui button" type="submit" th:text="${venta.estado}"></button>
+									<button title="Presione para finalizar la venta" class="ui button" type="submit">Recepcionar</button>
 								</form>
 							</td>
 							<td th:unless="${venta.isRecepcionado}" th:text="${venta.estado}">
@@ -45,6 +45,9 @@
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<div class="ui basic mini modal modalEstilos" th:if="${mensaje != null}">
+				<p th:text="${mensaje}"></p>
 			</div>
 		</div>
 	</div>

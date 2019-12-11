@@ -125,6 +125,7 @@
 						<form action="/ventas/cerrar" method="post">
 							<label>¿Está de acuerdo con la compra?</label>
 							<input type="hidden" value="1" name="aceptado">
+							<input type="hidden" th:value="${venta.idVenta}" name="idVenta">
 							<button class="ui button" type="submit">ACEPTO</button>
 						</form>
 					</td>
@@ -134,6 +135,7 @@
 							<label>No estoy conforme con la compra</label>
 							<br>
 							<input type="hidden" value="0" name="aceptado">
+							<input type="hidden" th:value="${venta.idVenta}" name="idVenta">
 								<textarea rows="10" cols="50" name="mensaje">
 								</textarea>
 								<br>
