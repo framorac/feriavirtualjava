@@ -12,7 +12,7 @@
 			<form class="ui form" th:action="@{/subastas/ingresar}" th:object="${subasta}" method="post">
 				<input type="hidden" name="usuario" th:value="${session.usuario}"  th:field="*{usuario}">
 				<input type="hidden" name="oferta" th:value="${oferta}" th:field="*{oferta}" >
-			<table>
+			<table class="ui selectable table">
 				<tr>
 					<td>
 						<div class="field">
@@ -30,22 +30,16 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label>¿Está certificado?</label>
-							<input type="radio" th:field="*{isCertificado}" name="isCertificado" value="1"> Sí
-							<input type="radio" th:field="*{isCertificado}" name="isCertificado" value="0" checked="checked"> No		
+							<label>Â¿Est&aacute;? certificado?</label>
+							<input type="radio" th:field="*{isCertificado}" name="isCertificado" value="1"> S&iacute;
+							<input type="radio" th:field="*{isCertificado}" name="isCertificado" value="0" required="required" checked="checked"> No		
 						</div>
 					</td>
 					<td>
 						<div class="field">
-							<label>¿Está refrigerado?</label>
-							<input type="radio" th:field="*{isRefrigerado}" name="isRefrigerado" value="1"> Sí
-							<input type="radio" th:field="*{isRefrigerado}" name="isRefrigerado" value="0" checked="checked"> No	
-						</div>
-					</td>
-					<td>
-						<div class="field">
-							<label>Capacidad Carga (Cantidad mínima <th:block th:text="${cantidadMinima}"></th:block>)</label>
-							<input type="number" th:field="*{capacidadCarga}" name="capacidadCarga" required="required" th:min="${cantidadMinima}">	
+							<label>Â¿Est&aacute;? refrigerado?</label>
+							<input type="radio" th:field="*{isRefrigerado}" name="isRefrigerado" value="1"> S&iacute;
+							<input type="radio" th:field="*{isRefrigerado}" name="isRefrigerado" value="0" required="required" checked="checked"> No	
 						</div>
 					</td>
 				</tr>
@@ -62,8 +56,16 @@
 						</div>
 					</td>
 					<td>
-						<label>Precio</label>
-						<input type="number" name="precio" th:field="*{precio}" required="required" min="100000"> 
+						<div class="field">
+							<label>Capacidad Carga: m&iacute;nima <th:block th:text="${cantidadMinima}"></th:block> (kg)</label>
+							<input type="number" th:field="*{capacidadCarga}" name="capacidadCarga" required="required" th:min="${cantidadMinima}">	
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Precio ($)</label>
+						<input type="number" name="precio" th:field="*{precio}" required="required" min="50000"> 
 					</td>
 				</tr>
 			</table>

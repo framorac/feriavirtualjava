@@ -58,4 +58,7 @@ public class Subasta {
 	
 	@Column(name="PRECIO")
 	private Integer precio;
+	
+	@Column(name="ISGANADOR",columnDefinition="char(1)")
+	private String isGanador;
 }

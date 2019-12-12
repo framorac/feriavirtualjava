@@ -18,21 +18,47 @@
 							<td>CERTIFICADO</td>
 							<td>ENVASADO</td>
 							<td>TOTAL</td>
+							<td></td>
 						</tr>
 					</thead>
 					<tbody>
 						<th:block th:each="miOferta : ${misOfertas}">
+							
 							<tr>
 								<td th:text="${miOferta.oferta.idOferta}"></td>
 								<td th:text="${miOferta.oferta.venta.idVenta}"></td>
 								<td th:text="${miOferta.oferta.fechaInicio}"></td>
-								<td th:text="${miOferta.isCertificado}"></td>
-								<td th:text="${miOferta.isEnvasado}"></td>
+								<td th:if="${miOferta.isCertificado == true}">S&iacute;</td>
+								<td th:if="${miOferta.isCertificado == false}">No</td>
+								<td th:if="${miOferta.isEnvasado == true}">S&iacute;</td>
+								<td th:if="${miOferta.isEnvasado == false}">No</td>
 								<td th:text="${miOferta.total}"></td>
+								<td><a th:href="@{/ofertas/}+${miOferta.oferta.idOferta}">Ver Detalles</a></td>
 							</tr>
 						</th:block>
 					</tbody>
 				</table>
+		</div>
+		<div class="column" th:if="${ofertaExpandida != null && !ofertaExpandida.isEmpty()}">
+		 <h2>Detalle Oferta: <span th:text="${session.idOfertaDetallada}"></span></h2>
+		 <table id="detalleDelaOferta" class="ui selectable table">
+			<thead>
+				<tr>
+					<td>PRODUCTO</td>
+					<td>CANTIDAD (Kg)</td>
+					<td>PRECIO x Kilo ($)</td>
+				</tr>
+			</thead>		 
+			<tbody>
+				<th:block th:each="detalle : ${ofertaExpandida}">
+					<tr>
+						<td th:text="${detalle.producto.nombre}"></td>
+						<td th:text="${detalle.cantidad}"></td>
+						<td th:text="${detalle.precio}"></td>
+					</tr>
+				</th:block>
+			</tbody>
+		 </table>
 		</div>
 </div>
 <!-- SCRIPT -->
