@@ -18,11 +18,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import duoc.portafolio.feriavirtual.commons.SessionAuxiliar;
 import duoc.portafolio.feriavirtual.models.Contrato;
+import duoc.portafolio.feriavirtual.models.DetalleOferta;
+import duoc.portafolio.feriavirtual.models.DetalleVenta;
+import duoc.portafolio.feriavirtual.models.Oferta;
+import duoc.portafolio.feriavirtual.models.Subasta;
 import duoc.portafolio.feriavirtual.models.Usuario;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu;
 import duoc.portafolio.feriavirtual.models._EstructuraMenu.MenuItem;
 import duoc.portafolio.feriavirtual.service.ContratoService;
+import duoc.portafolio.feriavirtual.service.DetalleOfertaService;
+import duoc.portafolio.feriavirtual.service.DetalleVentaService;
+import duoc.portafolio.feriavirtual.service.OfertaService;
+import duoc.portafolio.feriavirtual.service.SubastaService;
 import duoc.portafolio.feriavirtual.service.UsuarioService;
+import oracle.net.aso.x;
 
 @Controller
 public class LoginController {
@@ -32,6 +41,14 @@ public class LoginController {
 	private UsuarioService usuarioServicio;
 	@Autowired
 	private ContratoService contratoServicio;
+	@Autowired
+	private OfertaService ofertaServicio;
+	@Autowired
+	private DetalleOfertaService detalleOfertaServicio;
+	@Autowired
+	private DetalleVentaService detalleVentaServicio;
+	@Autowired
+	private SubastaService subastaService;
 	
 	
 	@PostMapping("/login")
@@ -66,6 +83,11 @@ public class LoginController {
 				  request.getSession().setAttribute("nombre", nombre);
 				  request.getSession().setAttribute("menu", GenerarPerfil(tipoUsuario));
 				  request.getSession().setAttribute("usuario", userFind);
+				  request.getSession().setAttribute("contrato", contratos.get(0));
+				  request.getSession().setAttribute("valores", AgregarGrafico(idUsuario));
+				  request.getSession().setAttribute("valores2", AgregarGrafico2());
+				  request.getSession().setAttribute("valores3", AgregarGrafico3(idUsuario));
+				  
 			  }
 			  else {
 				  String msg = "Contrato inválido o no vigente";
@@ -143,5 +165,84 @@ public class LoginController {
 		}
 		
 		return  estructuraMenu;
+	}
+	
+	private Object AgregarGrafico(int idUsuario) {
+		List<Oferta> ofertas = ofertaServicio.getAll().stream().filter(x -> x.getUsuario().getIdUsuario() == idUsuario).collect(Collectors.toList());
+		List<DetalleOferta> detallesOferta = detalleOfertaServicio.getAll().stream().collect(Collectors.toList());
+		class Objeto{
+			public int[] valores = new int[2];
+			public Objeto(int[] valores) {
+				super();
+				this.valores = valores;
+			}
+		}
+		List<Objeto> objetos = new ArrayList<Objeto>();
+		for(Oferta oferta : ofertas) {
+			List<DetalleOferta> detAux = detallesOferta.stream().filter(x -> x.getOferta().getIdOferta() == oferta.getIdOferta()).collect(Collectors.toList());
+			int total = 0;
+			for(DetalleOferta d : detAux) {
+				total += d.getCantidad();
+			}
+			int[] n = new int[] {oferta.getIdOferta(), total};
+			objetos.add(new Objeto(n));
+		}
+		return objetos;
+	}
+	
+	private Object AgregarGrafico2() {
+		List<DetalleVenta> detalles = detalleVentaServicio.getAll();
+		List<DetalleVenta> detallesFrutas = detalles.stream().filter(x -> x.getProducto().getTipoProducto().getTipo().equals("Frutas")).collect(Collectors.toList());
+		List<DetalleVenta> detallesVerduras = detalles.stream().filter(x -> x.getProducto().getTipoProducto().getTipo().equals("Verduras")).collect(Collectors.toList());
+		List<DetalleVenta> detallesSecos = detalles.stream().filter(x -> x.getProducto().getTipoProducto().getTipo().equals("Frutos secos")).collect(Collectors.toList());
+		class Objeto{
+			public int valor;
+			public String producto;
+			public Objeto(int valor, String producto) {
+				super();
+				this.valor = valor;
+				this.producto = producto;
+			}
+		}
+		List<Objeto> objetos = new ArrayList<Objeto>();
+		int totalFrutas = 0;
+		int totalVerduras = 0;
+		int totalSecos = 0;
+		for(DetalleVenta d : detallesFrutas) {
+			totalFrutas += d.getCantidad();
+		}
+		for(DetalleVenta d : detallesVerduras) {
+			totalVerduras += d.getCantidad();
+		}
+		for(DetalleVenta d : detallesSecos) {
+			totalSecos += d.getCantidad();
+		}
+		objetos.add(new Objeto(totalFrutas, "Frutas"));
+		objetos.add(new Objeto(totalVerduras, "Verduras"));
+		objetos.add(new Objeto(totalSecos, "Frutos secos"));
+		
+		return objetos;
+	}
+	
+	private Object AgregarGrafico3(int idUsuario) {
+		List<Subasta> subastas = subastaService.getAll().parallelStream().filter(x -> x.getUsuario().getIdUsuario() == idUsuario).collect(Collectors.toList());
+		class Objeto{
+			public int id;
+			public int capacidad;
+			public int precio;
+			public Objeto(int id, int capacidad, int precio) {
+				super();
+				this.id = id;
+				this.capacidad = capacidad;
+				this.precio = precio;
+			}
+		}
+		List<Objeto> objetos = new ArrayList<Objeto>();
+		if(subastas != null && subastas.size() > 0 ) {
+			for(Subasta subasta : subastas) {
+				objetos.add(new Objeto(subasta.getIdSubasta(), subasta.getCapacidadCarga(), subasta.getPrecio()));
+			}
+		}
+		return objetos;
 	}
 }

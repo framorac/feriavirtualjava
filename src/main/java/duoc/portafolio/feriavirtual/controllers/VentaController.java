@@ -192,7 +192,7 @@ public class VentaController {
 		}
 		else {
 			List<DetalleOferta> detallesOferta = detalleOfertaService.getAll().stream().filter(x -> x.getOferta().getIdOferta() == ofertaGanadora.getIdOferta()).collect(Collectors.toList());
-			List<Subasta> subastas = subastaService.getAll().stream().filter(x -> x.getOferta().getIdOferta() == ofertaGanadora.getIdOferta() && x.getIsGanador().equals("1")).collect(Collectors.toList());
+			List<Subasta> subastas = subastaService.getAll().stream().filter(x -> x.getOferta().getIdOferta() == ofertaGanadora.getIdOferta() && x.getIsGanador() != null && x.getIsGanador().equals("1")).collect(Collectors.toList());
 			Subasta subastaGanadora = subastas.size() > 0 ? subastas.get(0) : null;
 			if(subastaGanadora == null) {
 				modelo.addAttribute("msgFinalizar", "No hay subasta ganadora");
@@ -213,6 +213,9 @@ public class VentaController {
 		String mensaje = "";
 		HistoricoEstadoVenta newHistoricoVenta = new HistoricoEstadoVenta();
 		Venta v = ventaServicio.get(idVenta);
+		HistoricoEstadoVenta before = hevService.getAll().stream().filter(x -> x.getVenta().getIdVenta() == idVenta && x.getActivo() == '1').collect(Collectors.toList()).get(0);
+		before.setActivo('0');
+		hevService.save(before);
 		newHistoricoVenta.setVenta(v);
 		newHistoricoVenta.setActivo('1');
 		newHistoricoVenta.setFecha(Date.valueOf(LocalDate.now()));
@@ -227,9 +230,6 @@ public class VentaController {
 		}
 		newHistoricoVenta.setTipo(te);
 		hevService.save(newHistoricoVenta);
-		HistoricoEstadoVenta before = hevService.getAll().stream().filter(x -> x.getVenta().getIdVenta() == idVenta && x.getActivo() == '1').collect(Collectors.toList()).get(0);
-		before.setActivo('0');
-		hevService.save(before);
 		request.getSession().setAttribute("mensaje", mensaje);
 		return "redirect:/ventas";
 	}

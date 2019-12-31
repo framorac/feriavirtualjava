@@ -26,7 +26,7 @@ public class Subasta {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "subastas_sequence")
-	@SequenceGenerator(name = "subastas_sequence", sequenceName = "SUBASTAS_SEQ1", allocationSize = 1)
+	@SequenceGenerator(name = "subastas_sequence", sequenceName = "SUBASTAS_SEQ", allocationSize = 1)
 	@Column(name = "ID_SUBASTA")
 	private Integer idSubasta;
 	

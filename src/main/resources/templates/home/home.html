@@ -31,6 +31,47 @@
                     </div>
 				</div>
 	</div>
+	<br>
+	<div class="column">
+		<h3>Información del contrato</h3>
+		<table class="ui selectable table">
+			<thead>
+				<tr>
+					<td>ID del contrato</td>
+					<td>Nombre y Apellido</td>
+					<td>Tipo Cuenta</td>
+					<td>Fecha Inicio</td>
+					<td>Fecha T&eacute;rmino</td>
+					<td>Email</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${session.contrato.idContrato}"></td>
+					<td th:text="${session.contrato.usuario.nombre}+' '+${session.usuario.apellido}"></td>
+					<td th:text="${session.contrato.usuario.perfil.tipo}"></td>
+					<td th:text="${session.contrato.fechaInicio}"></td>
+					<td th:text="${session.contrato.fechaTermino}"></td>
+					<td th:text="${session.contrato.usuario.email}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="margin-bottom: 20px;" th:if="${session.valores!= null && !session.valores.isEmpty()}" class="column" id="grafico">
+		<th:block th:each="valor: ${session.valores}">
+			<span class="valoresGrafico" style="display: none" th:text="${valor.valores[0]+'-'+valor.valores[1]}"></span>
+		</th:block>
+	</div>
+	<div style="margin-bottom: 20px;" th:if="${session.valores2!= null && !session.valores2.isEmpty()}" class="column" id="grafico2">
+		<th:block th:each="valor: ${session.valores2}">
+			<span class="valoresGrafico2" style="display: none" th:text="${valor.valor+'-'+valor.producto}"></span>
+		</th:block>
+	</div>
+	<div style="margin-bottom: 20px;" th:if="${session.valores3!= null && !session.valores3.isEmpty()}" class="column" id="grafico3">
+		<th:block th:each="valor: ${session.valores3}">
+			<span class="valoresGrafico3" style="display: none" th:text="${valor.id}+'-'+${valor.capacidad}+'-'+${valor.precio}"></span>
+		</th:block>
+	</div>
 </div>
 <!-- SCRIPT -->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
@@ -39,6 +80,10 @@
 <script type="text/javascript" th:src="@{/js/pdfmake.js}"></script>
 <script type="text/javascript" th:src="@{/js/fonts.js}"></script>
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 <!-- SCRIPT -->
 </body>
 </html>
